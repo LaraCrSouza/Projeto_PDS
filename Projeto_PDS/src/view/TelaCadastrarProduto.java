@@ -26,6 +26,7 @@ public class TelaCadastrarProduto extends JPanel {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private JTextField textField_7;
 
 	/**
 	 * Create the panel.
@@ -39,12 +40,20 @@ public class TelaCadastrarProduto extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(66, 97, 199));
 		add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[]", "[]"));
+		panel.setLayout(new MigLayout("", "[]", "[][grow][]"));
+		
+		JLabel lblNewLabel_1 = new JLabel("Tabela");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel.add(lblNewLabel_1, "cell 0 1,growx,aligny top");
+		
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/sair30.png")));
+		panel.add(lblNewLabel_10, "cell 0 2,alignx center,growy");
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(217, 223, 255));
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px]5[grow]5[grow]", "[][][][][][][][][][][][][][][][][][]"));
+		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px,grow]5[grow]5[grow]", "[][][][][][][][][][][][][][][][][][]"));
 	
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg60.png")));
@@ -53,48 +62,56 @@ public class TelaCadastrarProduto extends JPanel {
 		JLabel lbCodigo = new JLabel("Código");
 		lbCodigo.setBackground(new Color(66, 97, 199));
 		lbCodigo.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbCodigo, "cell 1 2,alignx trailing");
+		panel_1.add(lbCodigo, "cell 1 1,alignx trailing");
 		
 		textField = new JTextField();
 		textField.setBackground(new Color(107, 158, 228));
-		panel_1.add(textField, "cell 2 2 2 1,growx");
+		panel_1.add(textField, "cell 2 1 2 1,growx");
 		textField.setColumns(10);
 		
 		JLabel lbNome = new JLabel("Nome:");
 		lbNome.setForeground(new Color(0, 0, 0));
 		lbNome.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbNome, "cell 1 4,alignx trailing");
+		panel_1.add(lbNome, "cell 1 3,alignx trailing");
 		
 		textField_1 = new JTextField();
 		textField_1.setBackground(new Color(107, 158, 228));
-		panel_1.add(textField_1, "cell 2 4 2 1,growx");
+		panel_1.add(textField_1, "cell 2 3 2 1,growx");
 		textField_1.setColumns(10);
 		
 		JLabel lbURL = new JLabel("URL: ");
 		lbURL.setBackground(new Color(189, 201, 255));
 		lbURL.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbURL, "cell 1 6,alignx trailing");
+		panel_1.add(lbURL, "cell 1 5,alignx trailing");
 		
 		textField_2 = new JTextField();
 		textField_2.setBackground(new Color(107, 158, 228));
-		panel_1.add(textField_2, "cell 2 6 2 1,growx");
+		panel_1.add(textField_2, "cell 2 5 2 1,growx");
 		textField_2.setColumns(10);
 		
 		JLabel lbMarca = new JLabel("Marca:");
 		lbMarca.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbMarca, "cell 1 8,alignx trailing");
+		panel_1.add(lbMarca, "cell 1 7,alignx trailing");
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBackground(new Color(107, 158, 228));
-		panel_1.add(comboBox, "cell 2 8 2 1,growx");
+		panel_1.add(comboBox, "cell 2 7 2 1,growx");
 		
 		JLabel lbCategoria = new JLabel("Categorias:");
 		lbCategoria.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbCategoria, "cell 1 10,alignx trailing");
+		panel_1.add(lbCategoria, "cell 1 9,alignx trailing");
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBackground(new Color(107, 158, 228));
-		panel_1.add(comboBox_1, "cell 2 10 2 1,growx");
+		panel_1.add(comboBox_1, "cell 2 9 2 1,growx");
+		
+		JLabel lblNewLabel_11 = new JLabel("Preço:");
+		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
+		panel_1.add(lblNewLabel_11, "cell 1 11,alignx trailing");
+		
+		textField_7 = new JTextField();
+		panel_1.add(textField_7, "cell 2 11 2 1,growx");
+		textField_7.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Peso Bruto:");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));

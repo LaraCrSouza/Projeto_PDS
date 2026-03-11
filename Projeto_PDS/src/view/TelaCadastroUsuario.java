@@ -49,7 +49,7 @@ public class TelaCadastroUsuario extends JPanel {
 		add(textField_1, "cell 2 4,growx");
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("CPF:");
+		JLabel lblNewLabel_2 = new JLabel("Email");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_2, "cell 1 6,alignx trailing");
 		
