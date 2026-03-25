@@ -7,21 +7,26 @@ import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class TelaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfNomeL;
+	private JTextField tfEmailL;
+	private JButton btnCadastrase;
+	private JButton btnLogin;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaLogin() {
-		
+		setBackground(new Color(217, 223, 255));
 		
 	
 		
@@ -37,36 +42,58 @@ public class TelaLogin extends JPanel {
 		lbNome.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lbNome, "cell 1 2,alignx trailing");
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(textField, "cell 2 2,growx");
-		textField.setColumns(10);
+		tfNomeL = new JTextField();
+		tfNomeL.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(tfNomeL, "cell 2 2,grow");
+		tfNomeL.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Email:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(lblNewLabel_1, "cell 1 4,alignx trailing");
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(textField_1, "cell 2 4,growx");
-		textField_1.setColumns(10);
+		tfEmailL = new JTextField();
+		tfEmailL.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(tfEmailL, "cell 2 4,grow");
+		tfEmailL.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		add(btnNewButton, "cell 2 6,alignx center,aligny top");
+		this.btnLogin = new JButton("Login");
+		this.btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		add(this.btnLogin, "cell 2 6,alignx center,aligny top");
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(217, 223, 255));
 		add(panel_1, "cell 2 8,grow");
 		
 		JLabel lblNewLabel_2 = new JLabel("Ainda não tem uma conta?");
+		lblNewLabel_2.setForeground(new Color(0, 0, 64));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_2);
 		
-		JButton btnNewButton_1 = new JButton("Cadastra-se");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel_1.add(btnNewButton_1);
+		this.btnCadastrase = new JButton("Cadastra-se");
+		this.btnCadastrase.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel_1.add(this.btnCadastrase);
 
-			
+
 	}
+	
+	public JTextField gettfNomeL() {
+		return tfNomeL;
+	}
+    public void settfNomeL(JTextField tfNomeL) {
+		this.tfNomeL = tfNomeL;
+	}
+	
+    public JTextField gettfEmailL() {
+		return tfEmailL;
+	}
+    public void settfEmailL(JTextField tfEmailL) {
+		this.tfEmailL = tfEmailL;
+	}
+
+	public void logar(ActionListener actionListener) {
+		this.btnLogin.addActionListener(actionListener);
+		
+	}
+    
 
 }

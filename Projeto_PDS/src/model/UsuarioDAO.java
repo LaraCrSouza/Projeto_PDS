@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sql.BancoDeDados;
-
 public class UsuarioDAO {
 
     // CREATE - Adicionar um novo usuário
