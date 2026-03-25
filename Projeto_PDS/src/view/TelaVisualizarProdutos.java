@@ -10,6 +10,7 @@ import java.awt.Button;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class TelaVisualizarProdutos extends JPanel {
 
@@ -30,6 +31,7 @@ public class TelaVisualizarProdutos extends JPanel {
 		panel.setLayout(new MigLayout("", "[]", "[]"));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("", "[][][][grow][][][]", "[][grow][][][]"));
 		

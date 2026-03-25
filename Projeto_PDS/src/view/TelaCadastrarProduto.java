@@ -51,7 +51,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel.add(lblNewLabel_10, "cell 0 2,alignx center,growy");
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(217, 223, 255));
+		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px,grow]5[grow]5[grow]", "[][][][][][][][][][][][][][][][][][]"));
 	
@@ -65,7 +65,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(lbCodigo, "cell 1 1,alignx trailing");
 		
 		textField = new JTextField();
-		textField.setBackground(new Color(107, 158, 228));
+		textField.setBackground(new Color(255, 255, 255));
 		panel_1.add(textField, "cell 2 1 2 1,growx");
 		textField.setColumns(10);
 		
@@ -75,7 +75,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(lbNome, "cell 1 3,alignx trailing");
 		
 		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(107, 158, 228));
+		textField_1.setBackground(new Color(255, 255, 255));
 		panel_1.add(textField_1, "cell 2 3 2 1,growx");
 		textField_1.setColumns(10);
 		
@@ -85,7 +85,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(lbURL, "cell 1 5,alignx trailing");
 		
 		textField_2 = new JTextField();
-		textField_2.setBackground(new Color(107, 158, 228));
+		textField_2.setBackground(new Color(255, 255, 255));
 		panel_1.add(textField_2, "cell 2 5 2 1,growx");
 		textField_2.setColumns(10);
 		
@@ -133,7 +133,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(panel_2, "flowx,cell 1 14,alignx center");
 		
 		textField_3 = new JTextField();
-		textField_3.setBackground(new Color(107, 158, 228));
+		textField_3.setBackground(new Color(255, 255, 255));
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
@@ -146,7 +146,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(panel_3, "flowx,cell 2 14,alignx center");
 		
 		textField_4 = new JTextField();
-		textField_4.setBackground(new Color(107, 158, 228));
+		textField_4.setBackground(new Color(255, 255, 255));
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_3.add(textField_4);
 		textField_4.setColumns(10);
@@ -159,7 +159,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(panel_5, "flowx,cell 4 14,alignx center");
 		
 		textField_6 = new JTextField();
-		textField_6.setBackground(new Color(107, 158, 228));
+		textField_6.setBackground(new Color(255, 255, 255));
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_5.add(textField_6);
 		textField_6.setColumns(10);
@@ -172,7 +172,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(panel_4, "flowx,cell 3 14,alignx center");
 		
 		textField_5 = new JTextField();
-		textField_5.setBackground(new Color(107, 158, 228));
+		textField_5.setBackground(new Color(255, 255, 255));
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_4.add(textField_5);
 		textField_5.setColumns(10);
