@@ -38,7 +38,7 @@ public class TelaCadastrarProduto extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(66, 97, 199));
+		panel.setBackground(new Color(117, 162, 244));
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[]", "[][grow][]"));
 		
@@ -60,7 +60,8 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(lblNewLabel, "cell 4 0,alignx center");
 		
 		JLabel lbCodigo = new JLabel("Código");
-		lbCodigo.setBackground(new Color(66, 97, 199));
+		lbCodigo.setForeground(new Color(17, 79, 166));
+		lbCodigo.setBackground(new Color(255, 255, 255));
 		lbCodigo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbCodigo, "cell 1 1,alignx trailing");
 		
@@ -70,7 +71,7 @@ public class TelaCadastrarProduto extends JPanel {
 		textField.setColumns(10);
 		
 		JLabel lbNome = new JLabel("Nome:");
-		lbNome.setForeground(new Color(0, 0, 0));
+		lbNome.setForeground(new Color(17, 79, 166));
 		lbNome.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbNome, "cell 1 3,alignx trailing");
 		
@@ -80,6 +81,7 @@ public class TelaCadastrarProduto extends JPanel {
 		textField_1.setColumns(10);
 		
 		JLabel lbURL = new JLabel("URL: ");
+		lbURL.setForeground(new Color(17, 79, 166));
 		lbURL.setBackground(new Color(189, 201, 255));
 		lbURL.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbURL, "cell 1 5,alignx trailing");
@@ -90,6 +92,7 @@ public class TelaCadastrarProduto extends JPanel {
 		textField_2.setColumns(10);
 		
 		JLabel lbMarca = new JLabel("Marca:");
+		lbMarca.setForeground(new Color(17, 79, 166));
 		lbMarca.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbMarca, "cell 1 7,alignx trailing");
 		
@@ -98,6 +101,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(comboBox, "cell 2 7 2 1,growx");
 		
 		JLabel lbCategoria = new JLabel("Categorias:");
+		lbCategoria.setForeground(new Color(17, 79, 166));
 		lbCategoria.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbCategoria, "cell 1 9,alignx trailing");
 		
@@ -106,6 +110,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(comboBox_1, "cell 2 9 2 1,growx");
 		
 		JLabel lblNewLabel_11 = new JLabel("Preço:");
+		lblNewLabel_11.setForeground(new Color(17, 79, 166));
 		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lblNewLabel_11, "cell 1 11,alignx trailing");
 		
@@ -114,18 +119,22 @@ public class TelaCadastrarProduto extends JPanel {
 		textField_7.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Peso Bruto:");
+		lblNewLabel_4.setForeground(new Color(17, 79, 166));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_1.add(lblNewLabel_4, "cell 1 13,alignx center,aligny center");
 		
 		JLabel lblNewLabel_2 = new JLabel("Altura:");
+		lblNewLabel_2.setForeground(new Color(17, 79, 166));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_1.add(lblNewLabel_2, "cell 2 13,alignx center");
 		
 		JLabel lblNewLabel_3 = new JLabel("Largura:");
+		lblNewLabel_3.setForeground(new Color(17, 79, 166));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_1.add(lblNewLabel_3, "cell 3 13,alignx center");
 		
 		JLabel lblNewLabel_5 = new JLabel("Comprimento:");
+		lblNewLabel_5.setForeground(new Color(17, 79, 166));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel_1.add(lblNewLabel_5, "cell 4 13,alignx center");
 		

@@ -23,6 +23,9 @@ public class LoginController {
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
 		});
+		this.login.cadastrarse(e -> {
+			navegador.navegarPara("CADASTRO USUARIO");
+		});
 	}
 
 	private void verificarCadastroUsuario() {
@@ -34,17 +37,28 @@ public class LoginController {
 		}
 		else {
 			boolean usuarioEncontrado = false;
+			String tipoUsuario = "";
 			
 			for(Usuario user : usuario) {
 				
-				if(user.getNome().equals(login.gettfNomeL().getText()) && user.getEmail().equals(login.gettfEmailL().getText())){
+				if(user.gettipoUsuario().equals("Administrador") && user.getNome().equals(login.gettfNomeL().getText()) && user.getEmail().equals(login.gettfEmailL().getText())){
 					
 					usuarioEncontrado = true;
+					tipoUsuario = "Administrador";
 					break;
-				};
+				}else if(user.gettipoUsuario().equals("Cliente") && user.getNome().equals(login.gettfNomeL().getText()) && user.getEmail().equals(login.gettfEmailL().getText())) {
+					usuarioEncontrado = true;
+					tipoUsuario = "Cliente";
+					break;
+				}
 			}
-			if(usuarioEncontrado) {
-				this.navegador.navegarPara("VISUALIZAR PRODUTOS");
+			if(usuarioEncontrado == true) {
+				if(tipoUsuario.equals("Administrador")){
+					this.navegador.navegarPara("CADASTRO PRODUTO");
+				} else if(tipoUsuario.equals("Cliente")) {
+					this.navegador.navegarPara("COMPRAS");
+				}
+				
 			}
 			else {
 				JOptionPane.showConfirmDialog(null, "Usuário não encontrado");

@@ -90,10 +90,11 @@ public class TelaLogin extends JPanel {
 		this.tfEmailL = tfEmailL;
 	}
 
-    
 	public void logar(ActionListener actionListener) {
 		this.btnLogin.addActionListener(actionListener);
-		
+	}
+	public void cadastrarse(ActionListener actionListener) {
+		this.btnCadastrase.addActionListener(actionListener);
 	}
     
 

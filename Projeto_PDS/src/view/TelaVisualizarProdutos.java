@@ -27,6 +27,7 @@ public class TelaVisualizarProdutos extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(117, 162, 244));
 		add(panel, BorderLayout.WEST);
 		panel.setLayout(new MigLayout("", "[]", "[]"));
 		

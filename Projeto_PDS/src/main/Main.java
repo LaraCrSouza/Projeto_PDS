@@ -4,6 +4,8 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import controller.CadastroController;
+import controller.LoginController;
 import controller.Navegador;
 import model.UsuarioDAO;
 import view.Janela;
@@ -28,6 +30,7 @@ public class Main {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 		TelaCadastroUsuario telaCadastroU = new TelaCadastroUsuario();
+		CadastroController cadastroCOntroller = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		
 
 		TelaCadastrarProduto  telaCadastrarP= new TelaCadastrarProduto();
@@ -35,8 +38,8 @@ public class Main {
 //		telaContratacao.adicionarOuvinte(contratacaoController);
 
 		TelaLogin telaLogin= new TelaLogin();
-//		CentralController centralController = new CentralController(telaCentral, candidatoDAO, navegador);
-		
+		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
+
 		TelaVisualizarProdutos visualizarProdutos= new TelaVisualizarProdutos();
 //		telaCentral.adicionarOuvinte(centralController);
 

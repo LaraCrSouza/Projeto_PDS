@@ -54,6 +54,7 @@ public class UsuarioDAO {
                 usuario.setId(rset.getInt("id"));
                 usuario.setNome(rset.getString("nome"));
                 usuario.setEmail(rset.getString("email"));
+                usuario.settipoUsuario(rset.getString("tipoUsuario"));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
