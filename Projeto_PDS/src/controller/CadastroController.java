@@ -6,21 +6,22 @@ import javax.swing.JOptionPane;
 
 import model.Usuario;
 import model.UsuarioDAO;
+import view.TelaCadastroUsuario;
 import view.TelaLogin;
 
-public class LoginController {
+public class CadastroController {
 	
-	private TelaLogin login;
+	private TelaCadastroUsuario cadastro;
 	private UsuarioDAO user;
 	private Navegador navegador;
 	
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+	public CadastroController(TelaCadastroUsuario cadastro, UsuarioDAO user, Navegador navegador) {
 		super();
-		this.login = login;
+		this.cadastro = cadastro;
 		this.user = user;
 		this.navegador = navegador;
 		
-		this.login.logar(e -> {
+		this.cadastro.cadastrar(e -> {
 			verificarCadastroUsuario();
 		});
 	}
@@ -28,7 +29,7 @@ public class LoginController {
 	private void verificarCadastroUsuario() {
 		List<Usuario> usuario = user.listarUsuarios();
 		
-		if(login.gettfNomeL().getText().isEmpty() || login.gettfEmailL().getText().isEmpty()) {
+		if(cadastro.gettfNomeC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()) {
 			
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
 		}
@@ -37,12 +38,13 @@ public class LoginController {
 			
 			for(Usuario user : usuario) {
 				
-				if(user.getNome().equals(login.gettfNomeL().getText()) && user.getEmail().equals(login.gettfEmailL().getText())){
+				if(user.getNome().equals(cadastro.gettfNomeC().getText()) && user.getEmail().equals(cadastro.gettfEmailC().getText())){
 					
 					usuarioEncontrado = true;
 					break;
 				};
 			}
+		
 			if(usuarioEncontrado) {
 				this.navegador.navegarPara("VISUALIZAR PRODUTOS");
 			}
@@ -54,8 +56,8 @@ public class LoginController {
 	}
 	
 	public void limparCamposLogin() {
-		login.gettfEmailL().setText("");
-		login.gettfNomeL().setText("");
+		cadastro.gettfEmailC().setText("");
+		cadastro.gettfNomeC().setText("");
 	}
 	
 

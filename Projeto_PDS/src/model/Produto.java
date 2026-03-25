@@ -77,8 +77,8 @@ public class Produto {
     public void setAltura(int altura) {
         this.altura = altura;
     }
-    public int getPreco() {
-        return preco;
+    public double getPreco() {
+        return  preco;
     }
     public void setPreco(double preco) {
         this.preco = preco;

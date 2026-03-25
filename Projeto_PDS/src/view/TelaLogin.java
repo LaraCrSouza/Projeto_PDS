@@ -26,7 +26,7 @@ public class TelaLogin extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaLogin() {
-		setBackground(new Color(217, 223, 255));
+		setBackground(new Color(221, 235, 247));
 		
 	
 		
@@ -61,7 +61,7 @@ public class TelaLogin extends JPanel {
 		add(this.btnLogin, "cell 2 6,alignx center,aligny top");
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(217, 223, 255));
+		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, "cell 2 8,grow");
 		
 		JLabel lblNewLabel_2 = new JLabel("Ainda não tem uma conta?");
@@ -90,6 +90,7 @@ public class TelaLogin extends JPanel {
 		this.tfEmailL = tfEmailL;
 	}
 
+    
 	public void logar(ActionListener actionListener) {
 		this.btnLogin.addActionListener(actionListener);
 		
