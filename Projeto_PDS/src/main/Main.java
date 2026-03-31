@@ -30,7 +30,7 @@ public class Main {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 		TelaCadastroUsuario telaCadastroU = new TelaCadastroUsuario();
-		CadastroController cadastroCOntroller = new CadastroController(telaCadastroU, usuarioDAO, navegador);
+		CadastroController cadastroController = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		
 
 		TelaCadastrarProduto  telaCadastrarP= new TelaCadastrarProduto();

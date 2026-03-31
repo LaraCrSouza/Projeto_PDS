@@ -11,9 +11,9 @@ import java.sql.Statement;
 
 public class Database {
 	
-	private static final String URL = "jdbc:mysql://localhost:3306/banco";
+	private static final String URL = "jdbc:mysql://localhost:3306/mercado";
     private static final String USER = "root";
-    private static final String PASSWORD = "admin";
+    private static final String PASSWORD = "LCS@souza18_";
 	
 	public List<Usuario> executarSQL(String sql) {
 	    List<Usuario> usuarios = new ArrayList<Usuario>();

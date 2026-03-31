@@ -61,7 +61,7 @@ public class LoginController {
 				
 			}
 			else {
-				JOptionPane.showConfirmDialog(null, "Usuário não encontrado");
+				JOptionPane.showMessageDialog(null, "Usuário não encontrado");
 			}
 		}
 		
