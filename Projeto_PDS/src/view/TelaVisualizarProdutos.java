@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import java.awt.Font;
 
 public class TelaVisualizarProdutos extends JPanel {
 
@@ -34,7 +35,7 @@ public class TelaVisualizarProdutos extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("", "[][][][grow][][][]", "[][grow][][][]"));
+		panel_1.setLayout(new MigLayout("", "[71.00,grow][126.00][][][162.00][101.00][grow]", "[][grow][][][]"));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel_1.add(scrollPane, "cell 1 1 5 1,grow");
@@ -62,13 +63,16 @@ public class TelaVisualizarProdutos extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Remover Produto");
-		panel_1.add(btnNewButton, "cell 2 3");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(btnNewButton, "cell 2 3,grow");
 		
 		JButton btnNewButton_1 = new JButton("Editar produtos");
-		panel_1.add(btnNewButton_1, "cell 3 3,alignx center");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(btnNewButton_1, "cell 3 3,alignx center,growy");
 		
 		JButton btnNewButton_2 = new JButton("Visualizar produtos");
-		panel_1.add(btnNewButton_2, "cell 4 3");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(btnNewButton_2, "cell 4 3,grow");
 
 	}
 

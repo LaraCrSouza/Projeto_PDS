@@ -5,7 +5,22 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.SpringLayout;
+import javax.swing.JDesktopPane;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.ImageIcon;
 
 public class TelaCompras extends JPanel {
 
@@ -18,14 +33,16 @@ public class TelaCompras extends JPanel {
 		
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
-		setLayout(new CardLayout(0, 0));
+		setLayout(null);
 		
-		JLabel label = new JLabel("New label");
-		add(label, "name_5250422977400");
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, -11, 183, 344);
+		add(layeredPane);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		add(lblNewLabel, "name_5248342982000");
+		lblNewLabel.setBounds(0, 11, 183, 220);
+		layeredPane.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(TelaCompras.class.getResource("/Imagens/blue-and-gold-gradient-abstract-border-for-business-or-certificate-png.png")));
 
 	}
-
 }
