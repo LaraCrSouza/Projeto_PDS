@@ -36,14 +36,13 @@ public class Main {
 		TelaCompras telaCompras = new TelaCompras();
 		TelaVisualizarProdutos telaVisualizarProdutos = new TelaVisualizarProdutos();
 		
-		Navegador navegador = new Navegador(janela);
+		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroControllerU = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
-		CadastroController cadastroController = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		
 		
-		navegador.setCadastroController(cadastroController);
-		navegador.setLoginController(loginController);
+		
+		
 
 		
 
@@ -51,6 +50,7 @@ public class Main {
 		navegador.adicionarPainel("CADASTRO PRODUTO", telaCadastrarP);
 		navegador.adicionarPainel("LOGIN", telaLogin);
 		navegador.adicionarPainel("VISUALIZAR PRODUTOS", telaVisualizarProdutos);
+		navegador.adicionarPainel("COMPRAS", telaCompras);
 
 		//Seta o jframe para abrir no meio da tela.
 		janela.setLocationRelativeTo(null);

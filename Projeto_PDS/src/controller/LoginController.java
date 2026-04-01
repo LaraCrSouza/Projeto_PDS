@@ -54,9 +54,9 @@ public class LoginController {
 			}
 			if(usuarioEncontrado == true) {
 				if(tipoUsuario.equals("Administrador")){
-					this.navegador.navegarPara("CADASTRO PRODUTO");
+					navegador.navegarPara("CADASTRO PRODUTO");
 				} else if(tipoUsuario.equals("Cliente")) {
-					this.navegador.navegarPara("COMPRAS");
+					navegador.navegarPara("COMPRAS");
 				}
 				
 			}

@@ -37,24 +37,29 @@ public class CadastroController {
 	
 
 	private void verificarCadastroUsuario() {
-		List<Usuario> usuario = user.listarUsuarios();
+		
 		
 		if(cadastro.gettfNomeC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()) {
 			
-			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
-			return;
+			JOptionPane.showMessageDialog(null, "Prencha todos os campos","Informação", 1);
+
+		} else {
+			
+			Usuario novoUsuario = new Usuario();
+		    novoUsuario.setNome(cadastro.gettfNomeC().getText());
+		    novoUsuario.setEmail(cadastro.gettfEmailC().getText());
+		    novoUsuario.settipoUsuario(cadastro.getcbTipoUsuario().getSelectedItem().toString());
+		    
+		    user.adicionarUsuario(novoUsuario); 
+		    
+		    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+		    
+		    navegador.navegarPara("LOGIN");
+		    limparCamposLogin();
+
+			
 		}
-		Usuario novoUsuario = new Usuario();
-	    novoUsuario.setNome(cadastro.gettfNomeC().getText());
-	    novoUsuario.setEmail(cadastro.gettfEmailC().getText());
-	    novoUsuario.settipoUsuario("Cliente");
-	    novoUsuario.settipoUsuario("Administrador");
-	    
-	    user.adicionarUsuario(novoUsuario); 
-	    
-	    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-	    
-	    limparCamposLogin();
+		
 		
 	}
 	

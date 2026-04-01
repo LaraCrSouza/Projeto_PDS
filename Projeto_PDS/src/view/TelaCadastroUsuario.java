@@ -53,7 +53,7 @@ public class TelaCadastroUsuario extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(lblNewLabel, "cell 1 3,alignx trailing");
 		
-		JComboBox cbTipoUsuario = new JComboBox();
+		cbTipoUsuario = new JComboBox();
 		cbTipoUsuario.setBackground(new Color(255, 255, 255));
 		cbTipoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		cbTipoUsuario.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Cliente"}));
@@ -85,7 +85,7 @@ public class TelaCadastroUsuario extends JPanel {
 	}
 	
 		public JComboBox getcbTipoUsuario() {
-			return getcbTipoUsuario();
+			return cbTipoUsuario;
 		}
 	    public void setcbTipoUsuario(JComboBox cbTipoUsuario) {
 			this.cbTipoUsuario = cbTipoUsuario;

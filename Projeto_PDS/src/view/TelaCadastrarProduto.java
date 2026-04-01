@@ -40,8 +40,8 @@ public class TelaCadastrarProduto extends JPanel {
 	 */
 	public TelaCadastrarProduto() {
 		
-		setMinimumSize(new Dimension(800, 600));
-		setPreferredSize(new Dimension(800, 600));
+		setMinimumSize(new Dimension(1020, 640));
+		setPreferredSize(new Dimension(1020, 640));
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -204,7 +204,7 @@ public class TelaCadastrarProduto extends JPanel {
 
 	}
 	public JComboBox getcbCategorias() {
-		return getcbCategorias();
+		return cbCategorias;
 	}
     public void setcbTipoUsuario(JComboBox cbCategorias) {
 		this.cbCategorias= cbCategorias;

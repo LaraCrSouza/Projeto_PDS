@@ -25,7 +25,8 @@ public class Janela extends JFrame {
 		this.cardLayout = new CardLayout();
 
 		this.contentPane = new JPanel(this.cardLayout);
-		this.contentPane.setPreferredSize(new Dimension(600, 675)); 
+		this.contentPane.setPreferredSize(new Dimension(1020, 640)); 
+		setMinimumSize(new Dimension(1020, 640));
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
 	}

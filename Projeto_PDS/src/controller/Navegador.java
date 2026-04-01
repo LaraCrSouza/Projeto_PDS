@@ -20,12 +20,11 @@ public class Navegador {
 	 * Construtor da classe.
 	 * @param janela Referência ao JFrame.
 	 */
-	public Navegador(Janela janela) {
+	public Navegador(Janela janela, TelaLogin login) {
 		this.janela = janela;
-	}
-	public Navegador(TelaLogin login) {
 		this.login = login;
 	}
+	
 
 	/**
 	 * Método responsável por chamar o método da view que adiciona as telas ao painel principal.
@@ -46,22 +45,7 @@ public class Navegador {
 	public void sair() {
 		this.janela.dispose();
 	}
-	public LoginController getloginController() {
-		return loginController;
-	}
 	
-	public void setLoginController(LoginController loginController) {
-		this.loginController = loginController;
-		
-	}
-	
-	public CadastroController getCadastroController() {
-		return cadastroController;
-	}
-	
-	public void setCadastroController(CadastroController cadastroController) {
-		this.cadastroController = cadastroController;	
-	}
 	
     
 
