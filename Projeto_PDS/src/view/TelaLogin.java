@@ -30,8 +30,8 @@ public class TelaLogin extends JPanel {
 		
 	
 		
-		setMinimumSize(new Dimension(975, 634));
-		setPreferredSize(new Dimension(975, 634));
+		setMinimumSize(new Dimension(800,600));
+		setPreferredSize(new Dimension(795, 607));
 		setLayout(new MigLayout("debug, insets 30 15 30 60, flowy, gap 10", "[200px,center][][grow][grow]", "[grow][grow 15][grow 5][grow 5][grow 5][grow 3][][][grow]"));
 		
 		JLabel lblNewLabel = new JLabel("");

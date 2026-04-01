@@ -42,7 +42,19 @@ public class CadastroController {
 		if(cadastro.gettfNomeC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()) {
 			
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+			return;
 		}
+		Usuario novoUsuario = new Usuario();
+	    novoUsuario.setNome(cadastro.gettfNomeC().getText());
+	    novoUsuario.setEmail(cadastro.gettfEmailC().getText());
+	    novoUsuario.settipoUsuario("Cliente");
+	    novoUsuario.settipoUsuario("Administrador");
+	    
+	    user.adicionarUsuario(novoUsuario); 
+	    
+	    JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+	    
+	    limparCamposLogin();
 		
 	}
 	

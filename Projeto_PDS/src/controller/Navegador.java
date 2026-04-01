@@ -1,6 +1,8 @@
 package controller;
 
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import view.Janela;
 import view.TelaLogin;
 
@@ -11,6 +13,8 @@ public class Navegador {
 
 	private Janela janela;
 	private TelaLogin login;
+	private LoginController loginController;
+	private CadastroController cadastroController;
 
 	/**
 	 * Construtor da classe.
@@ -42,4 +46,23 @@ public class Navegador {
 	public void sair() {
 		this.janela.dispose();
 	}
+	public LoginController getloginController() {
+		return loginController;
+	}
+	
+	public void setLoginController(LoginController loginController) {
+		this.loginController = loginController;
+		
+	}
+	
+	public CadastroController getCadastroController() {
+		return cadastroController;
+	}
+	
+	public void setCadastroController(CadastroController cadastroController) {
+		this.cadastroController = cadastroController;	
+	}
+	
+    
+
 }

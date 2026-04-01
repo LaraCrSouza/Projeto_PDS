@@ -11,6 +11,7 @@ import model.UsuarioDAO;
 import view.Janela;
 import view.TelaCadastrarProduto;
 import view.TelaCadastroUsuario;
+import view.TelaCompras;
 import view.TelaLogin;
 import view.TelaVisualizarProdutos;
 
@@ -26,27 +27,30 @@ public class Main {
 				));
 
 		Janela janela = new Janela();
-		Navegador navegador = new Navegador(janela);
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-
+		
+		//View
+		TelaLogin telaLogin= new TelaLogin();
 		TelaCadastroUsuario telaCadastroU = new TelaCadastroUsuario();
+		TelaCadastrarProduto  telaCadastrarP= new TelaCadastrarProduto();
+		TelaCompras telaCompras = new TelaCompras();
+		TelaVisualizarProdutos telaVisualizarProdutos = new TelaVisualizarProdutos();
+		
+		Navegador navegador = new Navegador(janela);
+		CadastroController cadastroControllerU = new CadastroController(telaCadastroU, usuarioDAO, navegador);
+		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
 		CadastroController cadastroController = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		
+		
+		navegador.setCadastroController(cadastroController);
+		navegador.setLoginController(loginController);
 
-		TelaCadastrarProduto  telaCadastrarP= new TelaCadastrarProduto();
-//		ContratacaoController contratacaoController = new ContratacaoController(telaContratacao, candidatoDAO, navegador);
-//		telaContratacao.adicionarOuvinte(contratacaoController);
-
-		TelaLogin telaLogin= new TelaLogin();
-		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
-
-		TelaVisualizarProdutos visualizarProdutos= new TelaVisualizarProdutos();
-//		telaCentral.adicionarOuvinte(centralController);
+		
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastroU);
 		navegador.adicionarPainel("CADASTRO PRODUTO", telaCadastrarP);
 		navegador.adicionarPainel("LOGIN", telaLogin);
-		navegador.adicionarPainel("VISUALIZAR PRODUTOS", visualizarProdutos);
+		navegador.adicionarPainel("VISUALIZAR PRODUTOS", telaVisualizarProdutos);
 
 		//Seta o jframe para abrir no meio da tela.
 		janela.setLocationRelativeTo(null);
