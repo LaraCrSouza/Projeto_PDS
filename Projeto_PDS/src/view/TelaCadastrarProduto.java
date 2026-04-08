@@ -30,10 +30,12 @@ public class TelaCadastrarProduto extends JPanel {
 	private JTextField tfLargura;
 	private JTextField tfComprimento;
 	private JTextField tfPreco;
+	
 	private JButton btnCadastrarP;
 	private JLabel lbIrTabela;
 	private JComboBox cbMarca;
 	private JComboBox cbCategorias;
+	
 
 	/**
 	 * Create the panel.
@@ -61,7 +63,7 @@ public class TelaCadastrarProduto extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px,grow]5[grow]5[grow]", "[][][][][][][][][][][][][][][][][][]"));
+		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px,grow]5[grow]5[grow]", "[][][][][][][][][][][][][][][][51.00][80.00]"));
 	
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg60.png")));
@@ -206,7 +208,7 @@ public class TelaCadastrarProduto extends JPanel {
 	public JComboBox getcbCategorias() {
 		return cbCategorias;
 	}
-    public void setcbTipoUsuario(JComboBox cbCategorias) {
+    public void setcbCategorias(JComboBox cbCategorias) {
 		this.cbCategorias= cbCategorias;
 	}
     public JComboBox getcbMarca() {

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Produto {
    
 	private int codigo;
@@ -7,16 +9,16 @@ public class Produto {
 	private String URL;
 	private String Marca;
 	private String Categorias;
-	private int PesoBruto;
-	private int altura;
-	private int largura;
-	private int comprimento;
+	private float PesoBruto;
+	private float altura;
+	private float largura;
+	private float comprimento;
 	private double preco;
 
     // Construtores
     public Produto() {}
 
-    public Produto(int codigo, String nome, String URL, String Marca, String Categorias, int PesoBruto, int altura, int largura, int comprimento, double preco) {
+    public Produto(int codigo, String nome, String URL, String Marca, String Categorias, float PesoBruto, float altura, float largura, float comprimento, double preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.URL = URL;
@@ -45,19 +47,19 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getEmail() {
+    public String getURL() {
         return URL;
     }
 
-    public void setEmail(String email) {
+    public void setURL(String URL) {
         this.URL = URL;
     }
 
-    public String gettipoUsuario() {
+    public String getMarca() {
         return Marca;
     }
-    public void settipoUsuario(String tipoUsuario) {
-        this.Marca = tipoUsuario;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
     }
     public String getCategorias() {
         return Categorias;
@@ -65,17 +67,29 @@ public class Produto {
     public void setCategorias(String Categorias) {
         this.Categorias = Categorias;
     }
-    public int getPesoBruto() {
+    public float getPesoBruto() {
         return PesoBruto;
     }
-    public void setPesoBruto(int tipoUsuario) {
+    public void setPesoBruto(float tipoUsuario) {
         this.PesoBruto = PesoBruto;
     }
-    public int getAltura() {
+    public float getAltura() {
         return altura;
     }
-    public void setAltura(int altura) {
+    public void setAltura(float altura) {
         this.altura = altura;
+    }
+    public float getLargura() {
+        return largura;
+    }
+    public void setLargura(float largura) {
+        this.largura = largura;
+    }
+    public float getComprimento() {
+        return comprimento;
+    }
+    public void setComprimento(float comprimento) {
+        this.largura = largura;
     }
     public double getPreco() {
         return  preco;
@@ -83,4 +97,11 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+	public void add(List<Produto> produto) {
+		
+	}
+ 
+
+
 }

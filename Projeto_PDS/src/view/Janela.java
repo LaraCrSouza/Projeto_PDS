@@ -31,20 +31,11 @@ public class Janela extends JFrame {
 		setContentPane(this.contentPane);
 	}
 
-	/**
-	 * Método responsável por adicionar os painéis que representam
-	 * cada tela da aplicação ao painel principal.
-	 * @param nome Nome do painel.
-	 * @param tela Painel que será adicionado.
-	 */
 	public void adicionarTela(String nome, JPanel tela) {
 		this.contentPane.add(tela, nome);
 	}
 
-	/**
-	 * Método responsável por mostrar uma tela (painel) específica.
-	 * @param nome Nome do painel.
-	 */
+	
 	public void mostrarTela(String nome) {
 		this.cardLayout.show(this.contentPane, nome);
 		this.pack();
