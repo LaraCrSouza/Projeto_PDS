@@ -10,9 +10,8 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-    // CREATE - Adicionar um novo usuário
     public void adicionarProduto(Produto produto) {
-        String sql = "INSERT INTO produto (codigo, nome, URL, Marca, Categorias, PesoBruto, altura, largura, comprimento, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 //        
         Connection conexao = null;
         PreparedStatement pstm = null;
@@ -20,8 +19,8 @@ public class ProdutoDAO {
         try {
             conexao = BancoDeDados.conectar();
             pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, produto.getNome());
-            pstm.setInt(2, produto.getCodigo());
+            pstm.setInt(1, produto.getCodigo());
+            pstm.setString(2, produto.getNome());
             pstm.setString(3, produto.getURL());
             pstm.setString(4, produto.getMarca());
             pstm.setString(5, produto.getCategorias());
@@ -49,7 +48,7 @@ public class ProdutoDAO {
     // READ - Listar todos os usuários
     public List<Produto> listarProdutos() {
         String sql = "SELECT * FROM produto";
-        List<Produto> produto = new ArrayList<>();
+        List<Produto> produtos = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement pstm = null;
         ResultSet rset = null; // Objeto que guarda o resultado da consulta
@@ -60,15 +59,17 @@ public class ProdutoDAO {
             rset = pstm.executeQuery();
 
             while (rset.next()) {
-                Produto produtos = new Produto();
-                produtos.setURL(rset.getString("URL"));
-                produtos.setNome(rset.getString("nome"));
-                produtos.setMarca(rset.getString("Marca"));
-                produtos.setCategorias(rset.getString("Categorias"));
-                produtos.setPesoBruto(rset.getFloat("PesoBruto"));
-                produtos.setAltura(rset.getFloat("Altura"));
-                produtos.setComprimento(rset.getFloat("comprimento"));
-                produtos.setPreco(rset.getDouble("preco"));
+                Produto produto = new Produto();
+                produto.setURL(rset.getString("URL"));
+                produto.setNome(rset.getString("nome"));
+                produto.setMarca(rset.getString("marca"));
+                produto.setCategorias(rset.getString("categorias"));
+                produto.setPesoBruto(rset.getFloat("PesoBruto"));
+                produto.setAltura(rset.getFloat("altura"));
+                produto.setComprimento(rset.getFloat("comprimento"));
+                produto.setPreco(rset.getDouble("preco"));
+                produto.setCodigo(rset.getInt("codigo"));
+                produto.setLargura(rset.getFloat("largura"));
                 produtos.add(produto);
 //                codigo, String nome, String URL, String Marca, String Categorias, int PesoBruto, int altura, int largura, int comprimento, double preco
             }
@@ -78,12 +79,12 @@ public class ProdutoDAO {
         	BancoDeDados.desconectar(conexao);
             // Fechar recursos
         }
-        return produto;
+        return produtos;
     }
 
     // UPDATE - Atualizar um usuário existente
     public void atualizarProduto(Produto produto) {
-        String sql = "UPDATE produto SET nome = ?, URL= ?, Marca = ?, Categorias = ?, PesoBruto = ?, Altura = ?, comprimento = ?, preco = ?, WHERE codigo = ?";
+        String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, preco = ? WHERE codigo = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -93,11 +94,12 @@ public class ProdutoDAO {
             pstm.setString(1, produto.getNome());
             pstm.setString(2, produto.getURL());
             pstm.setString(3, produto.getMarca());
-            pstm.setString(3, produto.getCategorias());
-            pstm.setFloat(3, produto.getPesoBruto());
-            pstm.setFloat(3, produto.getAltura());
-            pstm.setFloat(3, produto.getComprimento());
-            pstm.setDouble(3, produto.getPreco());
+            pstm.setString(4, produto.getCategorias());
+            pstm.setFloat(5, produto.getPesoBruto());
+            pstm.setFloat(6, produto.getAltura());
+            pstm.setFloat(7, produto.getComprimento());
+            pstm.setDouble(8, produto.getPreco());
+            pstm.setInt(9, produto.getCodigo());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,7 +109,7 @@ public class ProdutoDAO {
     }
 
     public void excluirProduto(int codigo) {
-        String sql = "DELETE FROM produto WHERE id = ?";
+        String sql = "DELETE FROM produto WHERE codigo = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
 

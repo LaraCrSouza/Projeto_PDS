@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaCadastrarProduto extends JPanel {
 
@@ -30,11 +31,11 @@ public class TelaCadastrarProduto extends JPanel {
 	private JTextField tfLargura;
 	private JTextField tfComprimento;
 	private JTextField tfPreco;
-	
 	private JButton btnCadastrarP;
 	private JLabel lbIrTabela;
-	private JComboBox cbMarca;
 	private JComboBox cbCategorias;
+	private JTextField tfMarca;
+
 	
 
 	/**
@@ -106,9 +107,9 @@ public class TelaCadastrarProduto extends JPanel {
 		lbMarca.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel_1.add(lbMarca, "cell 1 7,alignx trailing");
 		
-		this.cbMarca = new JComboBox();
-		this.cbMarca.setBackground(new Color(107, 158, 228));
-		panel_1.add(this.cbMarca, "cell 2 7 2 1,grow");
+		tfMarca = new JTextField();
+		panel_1.add(tfMarca, "cell 2 7 2 1,grow");
+		tfMarca.setColumns(10);
 		
 		JLabel lbCategoria = new JLabel("Categorias:");
 		lbCategoria.setForeground(new Color(17, 79, 166));
@@ -116,6 +117,8 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_1.add(lbCategoria, "cell 1 9,alignx trailing");
 		
 		this.cbCategorias = new JComboBox();
+		cbCategorias.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbCategorias.setModel(new DefaultComboBoxModel(new String[] {"Hortifrúti", "Açougue e Peixaria", "Padaria e Confeitaria", "Frios e Laticínios", "Mercearia (Não Perecíveis)", "Bebidas e Adega", "Higiene e Beleza", "Limpeza", "Congelados", "Utilidades e Bazar", "Pet Shop"}));
 		this.cbCategorias.setBackground(new Color(107, 158, 228));
 		panel_1.add(this.cbCategorias, "cell 2 9 2 1,grow");
 		
@@ -211,11 +214,11 @@ public class TelaCadastrarProduto extends JPanel {
     public void setcbCategorias(JComboBox cbCategorias) {
 		this.cbCategorias= cbCategorias;
 	}
-    public JComboBox getcbMarca() {
-		return getcbCategorias();
+    public JTextField gettfMarca() {
+		return tfMarca;
 	}
-    public void setcbMarca(JComboBox cbMarca) {
-		this.cbMarca= cbMarca;
+    public void settfMarca(JTextField tfMarca) {
+		this.tfMarca= tfMarca;
 	}
 	
     public JTextField gettfNome() {
@@ -256,7 +259,7 @@ public class TelaCadastrarProduto extends JPanel {
 		this.tfAltura = tfAltura;
     }
     public JTextField gettfLargura() {
-		return tfAltura;
+		return tfLargura;
 	}
     
     public void settfLargura(JTextField tfLargura) {

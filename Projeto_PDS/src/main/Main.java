@@ -4,9 +4,12 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import controller.CadastrarProdutoController;
 import controller.CadastroController;
 import controller.LoginController;
 import controller.Navegador;
+import controller.VisualizarProdutoController;
+import model.ProdutoDAO;
 import model.UsuarioDAO;
 import view.Janela;
 import view.TelaCadastrarProduto;
@@ -28,6 +31,7 @@ public class Main {
 
 		Janela janela = new Janela();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		ProdutoDAO produtoDAO = new ProdutoDAO();
 		
 		//View
 		TelaLogin telaLogin= new TelaLogin();
@@ -39,11 +43,10 @@ public class Main {
 		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroControllerU = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
+		CadastrarProdutoController produtoController = new CadastrarProdutoController(telaCadastrarP, produtoDAO, navegador);
+		VisualizarProdutoController visualizarController = new VisualizarProdutoController(telaVisualizarProdutos, produtoDAO);
 		
 		
-		
-		
-
 		
 
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastroU);

@@ -10,8 +10,12 @@ import java.awt.Button;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Produto;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 
 public class TelaVisualizarProdutos extends JPanel {
 
@@ -41,6 +45,7 @@ public class TelaVisualizarProdutos extends JPanel {
 		panel_1.add(scrollPane, "cell 1 1 5 1,grow");
 		
 		table = new JTable();
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null, null},
@@ -60,6 +65,8 @@ public class TelaVisualizarProdutos extends JPanel {
 				"C\u00F3digo", "Nome", "URL", "Marca", "Categorias", "Peso Bruto", "Altura", "Largura", "Comprimento"
 			}
 		));
+		
+		
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("Remover Produto");
@@ -74,6 +81,39 @@ public class TelaVisualizarProdutos extends JPanel {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel_1.add(btnNewButton_2, "cell 4 3,grow");
 
+	}
+	
+	public void preencherTabela(List<Produto> produtos) {
+
+	    DefaultTableModel modelo = new DefaultTableModel();
+
+	    modelo.addColumn("Código");
+	    modelo.addColumn("Nome");
+	    modelo.addColumn("URL");
+	    modelo.addColumn("Marca");
+	    modelo.addColumn("Categorias");
+	    modelo.addColumn("Peso Bruto");
+	    modelo.addColumn("Altura");
+	    modelo.addColumn("Largura");
+	    modelo.addColumn("Comprimento");
+	    modelo.addColumn("Preço");
+
+	    for (Produto produto : produtos) {
+	        modelo.addRow(new Object[]{
+	        	produto.getCodigo(),
+	        	produto.getNome(),
+	        	produto.getURL(),
+	        	produto.getMarca(),
+	        	produto.getCategorias(),
+	        	produto.getPesoBruto(),
+	        	produto.getAltura(),
+	        	produto.getLargura(),
+	        	produto.getComprimento(),
+	        	produto.getPreco()
+	        });
+	    }
+
+	    table.setModel(modelo);
 	}
 
 }

@@ -7,8 +7,8 @@ public class Produto {
 	private int codigo;
 	private String nome;
 	private String URL;
-	private String Marca;
-	private String Categorias;
+	private String marca;
+	private String categorias;
 	private float PesoBruto;
 	private float altura;
 	private float largura;
@@ -18,16 +18,17 @@ public class Produto {
     // Construtores
     public Produto() {}
 
-    public Produto(int codigo, String nome, String URL, String Marca, String Categorias, float PesoBruto, float altura, float largura, float comprimento, double preco) {
+    public Produto(int codigo, String nome, String URL, String marca, String categorias, float PesoBruto, float altura, float largura, float comprimento, double preco) {
         this.codigo = codigo;
         this.nome = nome;
         this.URL = URL;
-        this.Marca = Marca;
-        this.Categorias = Categorias;
+        this.marca = marca;
+        this.categorias = categorias;
         this.PesoBruto = PesoBruto;
         this.altura = altura;
         this.largura = largura;
         this.comprimento = comprimento;
+        this.preco = preco;
     }
 
     // Getters e Setters
@@ -56,21 +57,21 @@ public class Produto {
     }
 
     public String getMarca() {
-        return Marca;
+        return marca;
     }
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
     public String getCategorias() {
-        return Categorias;
+        return categorias;
     }
-    public void setCategorias(String Categorias) {
-        this.Categorias = Categorias;
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
     }
     public float getPesoBruto() {
         return PesoBruto;
     }
-    public void setPesoBruto(float tipoUsuario) {
+    public void setPesoBruto(float PesoBruto) {
         this.PesoBruto = PesoBruto;
     }
     public float getAltura() {
@@ -89,7 +90,7 @@ public class Produto {
         return comprimento;
     }
     public void setComprimento(float comprimento) {
-        this.largura = largura;
+        this.comprimento = comprimento;
     }
     public double getPreco() {
         return  preco;
@@ -98,9 +99,6 @@ public class Produto {
         this.preco = preco;
     }
 
-	public void add(List<Produto> produto) {
-		
-	}
  
 
 
