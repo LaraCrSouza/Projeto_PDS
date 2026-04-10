@@ -6,9 +6,10 @@ import javax.swing.plaf.FontUIResource;
 
 import controller.CadastrarProdutoController;
 import controller.CadastroController;
+import controller.ComprasController;
 import controller.LoginController;
 import controller.Navegador;
-import controller.VisualizarProdutoController;
+import controller.VisualizarTabelaController;
 import model.ProdutoDAO;
 import model.UsuarioDAO;
 import view.Janela;
@@ -16,7 +17,7 @@ import view.TelaCadastrarProduto;
 import view.TelaCadastroUsuario;
 import view.TelaCompras;
 import view.TelaLogin;
-import view.TelaVisualizarProdutos;
+import view.TelaVisualizarTabela;
 
 /**
  * Classe responsável por inicializar os elementos das 3 camadas: model, view e controller.
@@ -38,13 +39,14 @@ public class Main {
 		TelaCadastroUsuario telaCadastroU = new TelaCadastroUsuario();
 		TelaCadastrarProduto  telaCadastrarP= new TelaCadastrarProduto();
 		TelaCompras telaCompras = new TelaCompras();
-		TelaVisualizarProdutos telaVisualizarProdutos = new TelaVisualizarProdutos();
+		TelaVisualizarTabela telaVisualizarTabela = new TelaVisualizarTabela();
 		
 		Navegador navegador = new Navegador(janela, telaLogin);
 		CadastroController cadastroControllerU = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
 		CadastrarProdutoController produtoController = new CadastrarProdutoController(telaCadastrarP, produtoDAO, navegador);
-		VisualizarProdutoController visualizarController = new VisualizarProdutoController(telaVisualizarProdutos, produtoDAO);
+		VisualizarTabelaController visualizarController = new VisualizarTabelaController(telaVisualizarTabela, produtoDAO, navegador);
+		ComprasController compras = new ComprasController(telaCompras, produtoDAO);
 		
 		
 		
@@ -52,7 +54,7 @@ public class Main {
 		navegador.adicionarPainel("CADASTRO USUARIO", telaCadastroU);
 		navegador.adicionarPainel("CADASTRO PRODUTO", telaCadastrarP);
 		navegador.adicionarPainel("LOGIN", telaLogin);
-		navegador.adicionarPainel("VISUALIZAR PRODUTOS", telaVisualizarProdutos);
+		navegador.adicionarPainel("VISUALIZAR TABELA", telaVisualizarTabela);
 		navegador.adicionarPainel("COMPRAS", telaCompras);
 
 		//Seta o jframe para abrir no meio da tela.

@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import model.Produto;
 import model.ProdutoDAO;
 import view.TelaCadastrarProduto;
-import view.TelaVisualizarProdutos;
+import view.TelaVisualizarTabela;
 
 public class CadastrarProdutoController {
 	
@@ -29,7 +29,14 @@ public class CadastrarProdutoController {
 		this.cadastro.irParaTabela(new MouseAdapter() {
 			 @Override
 			    public void mouseClicked(MouseEvent e) {
-			        navegador.navegarPara("VISUALIZAR PRODUTOS");
+			        navegador.navegarPara("VISUALIZAR TABELA");
+			 }
+			 
+		});
+		this.cadastro.sair(new MouseAdapter() {
+			 @Override
+			    public void mouseClicked(MouseEvent e) {
+			        navegador.navegarPara("LOGIN");
 			 }
 			 
 		});
@@ -72,10 +79,9 @@ public class CadastrarProdutoController {
 		    produtoDAO.adicionarProduto(produto);
 
 		    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+		    
 		
 	}
-	
-	
-	
+
 
 }

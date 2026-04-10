@@ -22,9 +22,11 @@ public class LoginController {
 		
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
+			limparCamposLogin();
 		});
 		this.login.cadastrarse(e -> {
 			navegador.navegarPara("CADASTRO USUARIO");
+			limparCamposLogin();
 		});
 	}
 
@@ -71,6 +73,4 @@ public class LoginController {
 		login.gettfEmailL().setText("");
 		login.gettfNomeL().setText("");
 	}
-	
-
 }

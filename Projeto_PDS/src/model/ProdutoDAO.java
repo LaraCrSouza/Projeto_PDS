@@ -12,7 +12,7 @@ public class ProdutoDAO {
 
     public void adicionarProduto(Produto produto) {
         String sql = "INSERT INTO produto (codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//        
+        
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -29,6 +29,7 @@ public class ProdutoDAO {
             pstm.setFloat(8, produto.getLargura());
             pstm.setFloat(9, produto.getComprimento());
             pstm.setDouble(10, produto.getPreco());
+
             
             pstm.executeUpdate();
         } catch (SQLException e) {
@@ -45,13 +46,13 @@ public class ProdutoDAO {
         }
     }
 
-    // READ - Listar todos os usuários
+  
     public List<Produto> listarProdutos() {
         String sql = "SELECT * FROM produto";
         List<Produto> produtos = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement pstm = null;
-        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+        ResultSet rset = null; 
 
         try {
             conexao = BancoDeDados.conectar();
@@ -71,20 +72,20 @@ public class ProdutoDAO {
                 produto.setCodigo(rset.getInt("codigo"));
                 produto.setLargura(rset.getFloat("largura"));
                 produtos.add(produto);
-//                codigo, String nome, String URL, String Marca, String Categorias, int PesoBruto, int altura, int largura, int comprimento, double preco
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
         	BancoDeDados.desconectar(conexao);
-            // Fechar recursos
+            
         }
         return produtos;
     }
 
-    // UPDATE - Atualizar um usuário existente
+ 
     public void atualizarProduto(Produto produto) {
-        String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, preco = ? WHERE codigo = ?";
+        String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, largura = ?, preco = ? WHERE codigo = ?";
         Connection conexao = null;
         PreparedStatement pstm = null;
 
@@ -98,8 +99,9 @@ public class ProdutoDAO {
             pstm.setFloat(5, produto.getPesoBruto());
             pstm.setFloat(6, produto.getAltura());
             pstm.setFloat(7, produto.getComprimento());
-            pstm.setDouble(8, produto.getPreco());
-            pstm.setInt(9, produto.getCodigo());
+            pstm.setFloat(8, produto.getLargura());
+            pstm.setDouble(9, produto.getPreco());
+            pstm.setInt(10, produto.getCodigo());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

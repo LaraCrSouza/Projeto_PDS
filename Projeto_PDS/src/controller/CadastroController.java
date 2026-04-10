@@ -24,12 +24,14 @@ public class CadastroController {
 		
 		this.cadastro.cadastrar(e -> {
 			verificarCadastroUsuario();
+			limparCamposCadastro();
 		});
 		
 		this.cadastro.voltar(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
 		        navegador.navegarPara("LOGIN");
+		        limparCamposCadastro();
 		    }
 			
 		});
@@ -69,5 +71,8 @@ public class CadastroController {
 	}
 	
 	
-
+	public void limparCamposCadastro() {
+		cadastro.gettfEmailC().setText("");
+		cadastro.gettfNomeC().setText("");
+	}
 }

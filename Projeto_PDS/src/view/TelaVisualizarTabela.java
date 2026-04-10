@@ -9,23 +9,30 @@ import javax.swing.JScrollPane;
 import java.awt.Button;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import model.Produto;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
-public class TelaVisualizarProdutos extends JPanel {
+public class TelaVisualizarTabela extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
+	JButton btnRemover, btnEditar;
+	JLabel lbVoltar;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaVisualizarProdutos() {
+	public TelaVisualizarTabela() {
 		
 		setMinimumSize(new Dimension(975, 634));
 		setPreferredSize(new Dimension(975, 634));
@@ -41,8 +48,12 @@ public class TelaVisualizarProdutos extends JPanel {
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new MigLayout("", "[71.00,grow][126.00][][][162.00][101.00][grow]", "[][grow][][][]"));
 		
+		lbVoltar = new JLabel("");
+		lbVoltar.setIcon(new ImageIcon(TelaVisualizarTabela.class.getResource("/Imagens/botao-voltar40.png")));
+		panel_1.add(lbVoltar, "cell 0 0");
+		
 		JScrollPane scrollPane = new JScrollPane();
-		panel_1.add(scrollPane, "cell 1 1 5 1,grow");
+		panel_1.add(scrollPane, "cell 0 1 7 1,grow");
 		
 		table = new JTable();
 		
@@ -69,17 +80,13 @@ public class TelaVisualizarProdutos extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("Remover Produto");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_1.add(btnNewButton, "cell 2 3,grow");
+		btnRemover = new JButton("Remover Produto");
+		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(btnRemover, "cell 2 3,grow");
 		
-		JButton btnNewButton_1 = new JButton("Editar produtos");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_1.add(btnNewButton_1, "cell 3 3,alignx center,growy");
-		
-		JButton btnNewButton_2 = new JButton("Visualizar produtos");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_1.add(btnNewButton_2, "cell 4 3,grow");
+		btnEditar = new JButton("Editar produtos");
+		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(btnEditar, "cell 4 3,alignx center,growy");
 
 	}
 	
@@ -114,6 +121,24 @@ public class TelaVisualizarProdutos extends JPanel {
 	    }
 
 	    table.setModel(modelo);
+	}
+	
+	 public JTable getTable() {
+			return table;
+		}
+	    
+	    public void setTable(JTable table) {
+			this.table = table;
+		}
+	
+	public void remover(ActionListener actionListener) {
+		this.btnRemover.addActionListener(actionListener);
+	}
+	public void editar(ActionListener actionListener) {
+		this.btnEditar.addActionListener(actionListener);
+	}
+	public void voltar(MouseListener actionListener) {
+		this.lbVoltar.addMouseListener(actionListener);
 	}
 
 }

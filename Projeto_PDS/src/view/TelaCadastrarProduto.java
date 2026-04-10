@@ -35,6 +35,7 @@ public class TelaCadastrarProduto extends JPanel {
 	private JLabel lbIrTabela;
 	private JComboBox cbCategorias;
 	private JTextField tfMarca;
+	private JLabel lbSair;
 
 	
 
@@ -57,14 +58,14 @@ public class TelaCadastrarProduto extends JPanel {
 		this.lbIrTabela.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel.add(this.lbIrTabela, "cell 0 1,growx,aligny top");
 		
-		JLabel lblNewLabel_10 = new JLabel("");
-		lblNewLabel_10.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/sair30.png")));
-		panel.add(lblNewLabel_10, "cell 0 2,alignx center,growy");
+		lbSair = new JLabel("");
+		lbSair.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/sair30.png")));
+		panel.add(lbSair, "cell 0 2,alignx center,growy");
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("debug, insets 15 0 0 0", "[]5[grow]5[200px,grow]5[grow]5[grow]", "[][][][][][][][][][][][][][][][51.00][80.00]"));
+		panel_1.setLayout(new MigLayout("insets 0", "[]5[grow]5[200px,grow]5[]5[]", "[grow][grow][grow][grow][grow][grow][][][][][grow][grow][grow][grow][grow][51.00,grow][80.00,grow]"));
 	
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg60.png")));
@@ -287,6 +288,9 @@ public class TelaCadastrarProduto extends JPanel {
 	
 	public void irParaTabela(MouseListener actionListener) {
 		this.lbIrTabela.addMouseListener(actionListener);
+	}
+	public void sair(MouseListener actionListener) {
+		this.lbSair.addMouseListener(actionListener);
 	}
 
 }
