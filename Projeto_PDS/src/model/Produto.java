@@ -15,7 +15,7 @@ public class Produto {
 	private float comprimento;
 	private double preco;
 
-    // Construtores
+    
     public Produto() {}
 
     public Produto(int codigo, String nome, String URL, String marca, String categorias, float PesoBruto, float altura, float largura, float comprimento, double preco) {
