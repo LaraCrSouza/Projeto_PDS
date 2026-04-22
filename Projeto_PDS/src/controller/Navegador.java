@@ -4,7 +4,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import view.Janela;
+import view.TelaCarrinho;
+import view.TelaFinalizarCompra;
 import view.TelaLogin;
+import view.TelaVisualizarProduto;
 
 public class Navegador {
 
@@ -12,8 +15,13 @@ public class Navegador {
 	private TelaLogin login;
 	private LoginController loginController;
 	private CadastroController cadastroController;
+	private TelaCarrinho telaCarrinho;
+	private TelaFinalizarCompra finalizar;
+	private TelaVisualizarProduto telaVisualizarProduto;
 
-
+	public void setTelaCarrinho(TelaCarrinho telaCarrinho) {
+	    this.telaCarrinho = telaCarrinho;
+	}
 	public Navegador(Janela janela, TelaLogin login) {
 		this.janela = janela;
 		this.login = login;
@@ -29,6 +37,15 @@ public class Navegador {
 
 	public void sair() {
 		this.janela.dispose();
+	}
+	public TelaCarrinho getTelaCarrinho() {
+	    return telaCarrinho;
+	}
+	public void setTelaVisualizarProduto(TelaVisualizarProduto t) {
+	    this.telaVisualizarProduto = t;
+	}
+	public TelaVisualizarProduto getTelaVisualizarProduto() {
+	    return telaVisualizarProduto;
 	}
 	
 	

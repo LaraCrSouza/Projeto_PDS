@@ -119,7 +119,7 @@ public class TelaCadastrarProduto extends JPanel {
 		
 		this.cbCategorias = new JComboBox();
 		cbCategorias.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbCategorias.setModel(new DefaultComboBoxModel(new String[] {"Hortifrúti", "Açougue e Peixaria", "Padaria e Confeitaria", "Frios e Laticínios", "Mercearia (Não Perecíveis)", "Bebidas e Adega", "Higiene e Beleza", "Limpeza", "Congelados", "Utilidades e Bazar", "Pet Shop"}));
+		cbCategorias.setModel(new DefaultComboBoxModel(new String[] {"Hortifrúti", "Açougue e Peixaria", "Padaria e Confeitaria", "Frios e Laticínios", "Mercearia (Não Perecíveis)", "Bebidas e Adega", "Higiene e Beleza", "Limpeza", "Congelados", "Utilidades e Bazar", "Pet Shop", "Eletrônicos"}));
 		this.cbCategorias.setBackground(new Color(107, 158, 228));
 		panel_1.add(this.cbCategorias, "cell 2 9 2 1,grow");
 		

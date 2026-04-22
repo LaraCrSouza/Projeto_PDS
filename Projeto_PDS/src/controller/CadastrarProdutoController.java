@@ -15,12 +15,14 @@ public class CadastrarProdutoController {
 	private TelaCadastrarProduto cadastro;
 	private ProdutoDAO produtoDAO;
 	private Navegador navegador;
+	private VisualizarTabelaController visualizarController;
 
-	public CadastrarProdutoController(TelaCadastrarProduto cadastro, ProdutoDAO produtoDAO, Navegador navegador) {
+	public CadastrarProdutoController(TelaCadastrarProduto cadastro, ProdutoDAO produtoDAO, Navegador navegador, VisualizarTabelaController visualizarController) {
 		super();
 		this.cadastro = cadastro;
 		this.produtoDAO = produtoDAO;
 		this.navegador = navegador;
+		this.visualizarController = visualizarController;
 		
 		this.cadastro.cadastrar(e -> {
 			CadastroProduto();
@@ -30,6 +32,7 @@ public class CadastrarProdutoController {
 			 @Override
 			    public void mouseClicked(MouseEvent e) {
 			        navegador.navegarPara("VISUALIZAR TABELA");
+			        limparCampos();
 			 }
 			 
 		});
@@ -53,6 +56,7 @@ public class CadastrarProdutoController {
 		|| cadastro.gettfMarca().getText().isEmpty()) {
 			
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
+			limparCampos();
 			return;
 		}
 		
@@ -77,11 +81,23 @@ public class CadastrarProdutoController {
 		    produto.setPreco(Double.parseDouble(cadastro.gettfPreco().getText()));
 		    
 		    produtoDAO.adicionarProduto(produto);
+		    limparCampos();
 
 		    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 		    
 		
 	}
 
+	public void limparCampos() {
+		cadastro.gettfAltura().setText("");
+		cadastro.gettfCodigo().setText("");
+		cadastro.gettfComprimento().setText("");
+		cadastro.gettfLargura().setText("");
+		cadastro.gettfMarca().setText("");
+		cadastro.gettfNome().setText("");
+		cadastro.gettfPesoBruto().setText("");
+		cadastro.gettfPreco().setText("");
+		cadastro.gettfURL().setText("");
+	}
 
 }
