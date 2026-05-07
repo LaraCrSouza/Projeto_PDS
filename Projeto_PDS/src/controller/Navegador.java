@@ -20,13 +20,14 @@ public class Navegador {
 	private TelaVisualizarProduto telaVisualizarProduto;
 
 	public void setTelaCarrinho(TelaCarrinho telaCarrinho) {
-	    this.telaCarrinho = telaCarrinho;
+		this.telaCarrinho = telaCarrinho;
 	}
+
 	public Navegador(Janela janela, TelaLogin login) {
 		this.janela = janela;
 		this.login = login;
 	}
-	
+
 	public void adicionarPainel(String nome, JPanel tela) {
 		this.janela.adicionarTela(nome, tela);
 	}
@@ -38,17 +39,17 @@ public class Navegador {
 	public void sair() {
 		this.janela.dispose();
 	}
+
 	public TelaCarrinho getTelaCarrinho() {
-	    return telaCarrinho;
+		return telaCarrinho;
 	}
+
 	public void setTelaVisualizarProduto(TelaVisualizarProduto t) {
-	    this.telaVisualizarProduto = t;
+		this.telaVisualizarProduto = t;
 	}
+
 	public TelaVisualizarProduto getTelaVisualizarProduto() {
-	    return telaVisualizarProduto;
+		return telaVisualizarProduto;
 	}
-	
-	
-    
 
 }

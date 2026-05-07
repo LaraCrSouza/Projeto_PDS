@@ -35,85 +35,86 @@ public class TelaCadastroUsuario extends JPanel {
 
 		setMinimumSize(new Dimension(975, 634));
 		setPreferredSize(new Dimension(975, 634));
-		setLayout(new MigLayout("insets 30 15 30 60, fill, gap 10", "[grow][grow 30][grow,center][grow]", "[][grow][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow]"));
-		
+		setLayout(new MigLayout("insets 30 15 30 60, fill, gap 10", "[grow][grow 30][grow,center][grow]",
+				"[][grow][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow]"));
+
 		JLabel label = new JLabel("");
-		
-		
+
 		this.lbVoltar = new JLabel("");
 		this.lbVoltar.setIcon(new ImageIcon(TelaCadastroUsuario.class.getResource("/Imagens/botao-voltar40.png")));
 		add(this.lbVoltar, "cell 0 0");
-		
+
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(TelaCadastroUsuario.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg-150.png")));
+		lblNewLabel_3.setIcon(new ImageIcon(
+				TelaCadastroUsuario.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg-150.png")));
 		add(lblNewLabel_3, "cell 2 1,alignx left,aligny bottom");
-		
+
 		JLabel lblNewLabel = new JLabel("Tipo de usuário:");
 		lblNewLabel.setForeground(new Color(17, 29, 176));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(lblNewLabel, "cell 1 3,alignx trailing");
-		
+
 		cbTipoUsuario = new JComboBox();
 		cbTipoUsuario.setBackground(new Color(255, 255, 255));
 		cbTipoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		cbTipoUsuario.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Cliente"}));
+		cbTipoUsuario.setModel(new DefaultComboBoxModel(new String[] { "Administrador", "Cliente" }));
 		add(cbTipoUsuario, "cell 2 3,grow");
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Nome:");
 		lblNewLabel_1.setForeground(new Color(17, 29, 176));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(lblNewLabel_1, "cell 1 5,alignx trailing");
-		
+
 		this.tfNomeC = new JTextField();
 		this.tfNomeC.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(this.tfNomeC, "cell 2 5,grow");
 		this.tfNomeC.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Email");
 		lblNewLabel_2.setForeground(new Color(17, 29, 176));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add(lblNewLabel_2, "cell 1 7,alignx trailing");
-		
+
 		this.tfEmailC = new JTextField();
 		this.tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		add(this.tfEmailC, "cell 2 7,grow");
 		this.tfEmailC.setColumns(10);
-		
+
 		this.btnCadastrar = new JButton("Cadastrar");
 		this.btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		add(this.btnCadastrar, "cell 2 9,aligny top");
 	}
-	
-		public JComboBox getcbTipoUsuario() {
-			return cbTipoUsuario;
-		}
-	    public void setcbTipoUsuario(JComboBox cbTipoUsuario) {
-			this.cbTipoUsuario = cbTipoUsuario;
-		}
-		
-	    public JTextField gettfNomeC() {
-			return tfNomeC;
-		}
-	    
-	    public void settfNomeC(JTextField tfNomeC) {
-			this.tfNomeC = tfNomeC;
-		}
-	    
-	    public JTextField gettfEmailC() {
-			return tfEmailC;
-		}
-	    
-	    public void settfEmailC(JTextField tfEmailC) {
-			this.tfEmailC = tfEmailC;
-		}
-	
-	    
-		public void cadastrar(ActionListener actionListener) {
-			this.btnCadastrar.addActionListener(actionListener);
-		}
-		
-		public void voltar(MouseListener actionListener) {
-			this.lbVoltar.addMouseListener(actionListener);
-		}
+
+	public JComboBox getcbTipoUsuario() {
+		return cbTipoUsuario;
+	}
+
+	public void setcbTipoUsuario(JComboBox cbTipoUsuario) {
+		this.cbTipoUsuario = cbTipoUsuario;
+	}
+
+	public JTextField gettfNomeC() {
+		return tfNomeC;
+	}
+
+	public void settfNomeC(JTextField tfNomeC) {
+		this.tfNomeC = tfNomeC;
+	}
+
+	public JTextField gettfEmailC() {
+		return tfEmailC;
+	}
+
+	public void settfEmailC(JTextField tfEmailC) {
+		this.tfEmailC = tfEmailC;
+	}
+
+	public void cadastrar(ActionListener actionListener) {
+		this.btnCadastrar.addActionListener(actionListener);
+	}
+
+	public void voltar(MouseListener actionListener) {
+		this.lbVoltar.addMouseListener(actionListener);
+	}
 
 }

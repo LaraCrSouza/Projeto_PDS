@@ -14,7 +14,6 @@ public class Janela extends JFrame {
 	private JPanel contentPane;
 	private CardLayout cardLayout;
 
-
 	/**
 	 * Construtor da classe.
 	 */
@@ -25,7 +24,7 @@ public class Janela extends JFrame {
 		this.cardLayout = new CardLayout();
 
 		this.contentPane = new JPanel(this.cardLayout);
-		this.contentPane.setPreferredSize(new Dimension(1020, 640)); 
+		this.contentPane.setPreferredSize(new Dimension(1020, 640));
 		setMinimumSize(new Dimension(1020, 640));
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -35,7 +34,6 @@ public class Janela extends JFrame {
 		this.contentPane.add(tela, nome);
 	}
 
-	
 	public void mostrarTela(String nome) {
 		this.cardLayout.show(this.contentPane, nome);
 		this.pack();

@@ -1,4 +1,5 @@
 package view;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -18,7 +19,7 @@ public class CarrinhoDeCompra extends JPanel {
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
 		setLayout(new MigLayout("", "[grow]", "[553.00][72.00]"));
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(221, 235, 247));
 		add(panel, "cell 0 0,grow");

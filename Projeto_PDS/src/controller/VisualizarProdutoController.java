@@ -15,22 +15,21 @@ import view.TelaVisualizarProduto;
 import view.TelaVisualizarTabela;
 
 public class VisualizarProdutoController {
-	
+
 	private TelaVisualizarProduto telaVisualizarProduto;
 	private Navegador navegador;
 
-	public VisualizarProdutoController(TelaVisualizarProduto telaVisualizarProduto,  Navegador navegador) {
+	public VisualizarProdutoController(TelaVisualizarProduto telaVisualizarProduto, Navegador navegador) {
 		super();
-		this.telaVisualizarProduto= telaVisualizarProduto;
+		this.telaVisualizarProduto = telaVisualizarProduto;
 
-	    
-	    this.telaVisualizarProduto.VoltarTelaCompras(new MouseAdapter() {
-		    @Override
-		    public void mouseClicked(MouseEvent e) {
-		        navegador.navegarPara("COMPRAS");
-		    }
-			
+		this.telaVisualizarProduto.VoltarTelaCompras(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				navegador.navegarPara("COMPRAS");
+			}
+
 		});
-	    
+
 	}
 }
