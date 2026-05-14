@@ -3,19 +3,19 @@
 
 	USE mercado;
 
-	CREATE TABLE IF NOT EXISTS usuario (
+	CREATE TABLE IF NOT EXISTS usuarios (
 	    id INT AUTO_INCREMENT PRIMARY KEY,  -- Chave primária com autoincremento
 	    nome VARCHAR(100) NOT NULL,         -- Nome do usuário, não pode ser nulo
 	    email VARCHAR(100) NOT NULL UNIQUE, -- Email do usuário, não pode ser nulo e deve ser único
 		tipoUsuario VARCHAR(100) NOT NULL
 	);
 
-	INSERT INTO usuario (nome, email, tipoUsuario) VALUES
+	INSERT INTO usuarios (nome, email, tipoUsuario) VALUES
 	('Ana Silva', 'ana.silva@email.com', 'Cliente'),
 	('Bruno Costa', 'bruno.costa@email.com', 'Administrador'),
 	('Carlos Dias', 'carlos.dias@email.com', 'Cliente');
 
-	select * from usuario;
+	select * from usuarios;
 
 	CREATE TABLE IF NOT EXISTS produto (
 	codigo int NOT NULL PRIMARY KEY,

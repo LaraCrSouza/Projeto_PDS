@@ -32,11 +32,11 @@ public class TelaFinalizarCompra extends JPanel {
 		setMinimumSize(new Dimension(975, 634));
 		setPreferredSize(new Dimension(975, 634));
 
-		setLayout(new MigLayout("", "[][618.00][402.00]", "[][252.00][153.00][205.00]"));
-
-		lbVoltar = new JLabel("");
-		lbVoltar.setIcon(new ImageIcon(TelaFinalizarCompra.class.getResource("/Imagens/botao-voltar40.png")));
-		add(lbVoltar, "cell 0 0");
+		setLayout(new MigLayout("", "[][618.00][252.00][38.00]", "[][252.00][153.00][205.00]"));
+		
+				lbVoltar = new JLabel("");
+				lbVoltar.setIcon(new ImageIcon(TelaFinalizarCompra.class.getResource("/Imagens/botao-voltar40.png")));
+				add(lbVoltar, "cell 0 1,aligny top");
 
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(
@@ -44,7 +44,7 @@ public class TelaFinalizarCompra extends JPanel {
 		add(lblNewLabel_3, "cell 1 1,alignx center");
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(192, 192, 192));
+		panel.setBackground(new Color(186, 216, 239));
 		add(panel, "cell 2 1,grow");
 		panel.setLayout(new MigLayout("", "[97.00][][grow]", "[][][grow][][grow][]"));
 
@@ -57,7 +57,9 @@ public class TelaFinalizarCompra extends JPanel {
 		panel.add(lblNewLabel_2, "cell 0 2");
 
 		taQntdProdutos = new JTextArea();
-		taQntdProdutos.setBackground(new Color(192, 192, 192));
+		taQntdProdutos.setEditable(false);
+		taQntdProdutos.setEnabled(false);
+		taQntdProdutos.setBackground(new Color(186, 216, 239));
 		panel.add(taQntdProdutos, "cell 1 2 2 1");
 
 		JLabel lblNewLabel_4 = new JLabel("Total");
@@ -65,7 +67,9 @@ public class TelaFinalizarCompra extends JPanel {
 		panel.add(lblNewLabel_4, "cell 0 4");
 
 		taTotal = new JTextArea();
-		taTotal.setBackground(new Color(192, 192, 192));
+		taTotal.setEditable(false);
+		taTotal.setEnabled(false);
+		taTotal.setBackground(new Color(186, 216, 239));
 		panel.add(taTotal, "cell 1 4 2 1");
 
 		JLabel lblNewLabel = new JLabel("Escolha a forma de pagamento");

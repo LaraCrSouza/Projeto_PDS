@@ -18,6 +18,12 @@ public class Navegador {
 	private TelaCarrinho telaCarrinho;
 	private TelaFinalizarCompra finalizar;
 	private TelaVisualizarProduto telaVisualizarProduto;
+	private CarrinhoController carrinhoController;
+
+	
+	public void setCarrinhoController(CarrinhoController carrinhoController) {
+	    this.carrinhoController = carrinhoController;
+	}
 
 	public void setTelaCarrinho(TelaCarrinho telaCarrinho) {
 		this.telaCarrinho = telaCarrinho;

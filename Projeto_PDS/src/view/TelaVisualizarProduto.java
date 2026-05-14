@@ -24,15 +24,16 @@ public class TelaVisualizarProduto extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaVisualizarProduto() {
+		setBackground(new Color(221, 235, 247));
 		
 		
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
-		setLayout(new MigLayout("", "[][grow][grow][grow][grow][grow][grow][grow][grow][grow]", "[239.00][grow]"));
+		setLayout(new MigLayout("", "[][grow][grow][grow][grow][grow][grow][grow][grow][grow][36.00]", "[239.00][][74.00][269.00]"));
 		
 		lbVoltarTelaCompras = new JLabel("");
 		lbVoltarTelaCompras.setIcon(new ImageIcon(TelaVisualizarProduto.class.getResource("/Imagens/botao-voltar40.png")));
-		add(lbVoltarTelaCompras, "cell 0 0");
+		add(lbVoltarTelaCompras, "cell 0 0,alignx left,aligny top");
 		
 		JLabel lblNewLabel = new JLabel("Código");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -71,40 +72,49 @@ public class TelaVisualizarProduto extends JPanel {
 		add(lblNewLabel_7, "cell 9 0,alignx center,aligny bottom");
 		
 		taCodigo = new JTextArea();
+		taCodigo.setEnabled(false);
 		taCodigo.setEditable(false);
-		add(taCodigo, "cell 1 1,grow");
+		add(taCodigo, "cell 1 2,grow");
 		
 		taNome = new JTextArea();
+		taNome.setEnabled(false);
 		taNome.setEditable(false);
-		add(taNome, "cell 2 1,grow");
+		add(taNome, "cell 2 2,grow");
 		
 		taURL = new JTextArea();
+		taURL.setEnabled(false);
 		taURL.setEditable(false);
-		add(taURL, "cell 3 1,grow");
+		add(taURL, "cell 3 2,grow");
 		
 		taMarca = new JTextArea();
+		taMarca.setEnabled(false);
 		taMarca.setEditable(false);
-		add(taMarca, "cell 4 1,grow");
+		add(taMarca, "cell 4 2,grow");
 		
 		taCategorias = new JTextArea();
+		taCategorias.setEnabled(false);
 		taCategorias.setEditable(false);
-		add(taCategorias, "cell 5 1,grow");
+		add(taCategorias, "cell 5 2,grow");
 		
 		taPesoBruto = new JTextArea();
+		taPesoBruto.setEnabled(false);
 		taPesoBruto.setEditable(false);
-		add(taPesoBruto, "cell 6 1,grow");
+		add(taPesoBruto, "cell 6 2,grow");
 		
 		taAltura = new JTextArea();
+		taAltura.setEnabled(false);
 		taAltura.setEditable(false);
-		add(taAltura, "cell 7 1,grow");
+		add(taAltura, "cell 7 2,grow");
 		
 		taLargura = new JTextArea();
+		taLargura.setEnabled(false);
 		taLargura.setEditable(false);
-		add(taLargura, "cell 8 1,grow");
+		add(taLargura, "cell 8 2,grow");
 		
 		taComprimento = new JTextArea();
+		taComprimento.setEnabled(false);
 		taComprimento.setEditable(false);
-		add(taComprimento, "cell 9 1,grow");
+		add(taComprimento, "cell 9 2,grow");
 
 	}
 	

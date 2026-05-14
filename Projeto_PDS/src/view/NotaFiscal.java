@@ -5,6 +5,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.Color;
 
 public class NotaFiscal extends JPanel {
 
@@ -15,6 +16,7 @@ public class NotaFiscal extends JPanel {
 	 * Create the panel.
 	 */
 	public NotaFiscal() {
+		setBackground(new Color(221, 235, 247));
 		setLayout(new MigLayout("", "[142.00][grow][grow][grow][grow]", "[][grow][38.00][38.00][35.00]"));
 
 		JLabel lblNewLabel = new JLabel("Cód");

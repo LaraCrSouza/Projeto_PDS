@@ -60,7 +60,7 @@ public class Main {
 		CadastroController cadastroControllerU = new CadastroController(telaCadastroU, usuarioDAO, navegador);
 		LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
 		VisualizarTabelaController visualizarController = new VisualizarTabelaController(telaVisualizarTabela,
-				produtoDAO, navegador);
+				listaCarrinho, produtoDAO, navegador);
 		CadastrarProdutoController produtoController = new CadastrarProdutoController(telaCadastrarP, produtoDAO,
 				navegador, visualizarController, telaVisualizarTabela);
 		ComprasController compras = new ComprasController(telaCompras, produtoDAO, navegador, listaCarrinho,

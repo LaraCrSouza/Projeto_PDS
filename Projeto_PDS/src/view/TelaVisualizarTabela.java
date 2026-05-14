@@ -33,6 +33,7 @@ public class TelaVisualizarTabela extends JPanel {
 	private JTable table;
 	JButton btnRemover, btnEditar;
 	JLabel lbVoltar;
+	private java.util.List<Produto> listaProdutos;
 
 	/**
 	 * Create the panel.
@@ -73,6 +74,26 @@ public class TelaVisualizarTabela extends JPanel {
 		panel_1.add(btnEditar, "cell 4 3,alignx center,growy");
 
 	}
+
+	public void preencherTabela(TelaVisualizarTabela telaVisualizarTabela) {
+
+		this.listaProdutos = (List<Produto>) telaVisualizarTabela;
+
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+	}
+	
+	public int getLinhaSelecionada() {
+		return table.getSelectedRow();
+	}
+
+	public int getCodigoSelecionado() {
+		int linha = table.getSelectedRow();
+		if (linha == -1)
+			return -1; 
+		return (int) table.getValueAt(linha, 2);
+	}
+	
 
 	public JTable getTable() {
 		return table;

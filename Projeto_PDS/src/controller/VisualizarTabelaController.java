@@ -20,13 +20,16 @@ public class VisualizarTabelaController  extends ComponentAdapter{
 	private TelaVisualizarTabela telaVisualizarTabela;
 	private ProdutoDAO produtoDAO;
 	private Navegador navegador;
-
-	public VisualizarTabelaController(TelaVisualizarTabela telaVisualizarTabela, ProdutoDAO produtoDAO,
+	private List<Produto> visualizarTabela;
+	
+	public VisualizarTabelaController(TelaVisualizarTabela telaVisualizarTabela, List<Produto> visualizarTabela, ProdutoDAO produtoDAO,
 			Navegador navegador) {
 		super();
 		this.telaVisualizarTabela = telaVisualizarTabela;
 		this.produtoDAO = produtoDAO;
+		this.visualizarTabela =  visualizarTabela;
 
+		telaVisualizarTabela.adicionarOuvinte(this);
 		this.telaVisualizarTabela.remover(e -> {
 			excluirProduto();
 		});
@@ -45,17 +48,29 @@ public class VisualizarTabelaController  extends ComponentAdapter{
 
 	}
 
+
 	private void excluirProduto() {
-		int linhaSelecionada = telaVisualizarTabela.getTable().getSelectedRow();
-
-		int codigo = (int) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 0);
-
-		int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
-
-		if (confirm == JOptionPane.YES_OPTION) {
-			produtoDAO.excluirProduto(codigo);
-		}
+	    int linha = telaVisualizarTabela.getLinhaSelecionada();
+	    if (linha == -1) {
+	        JOptionPane.showMessageDialog(null, "Selecione um produto para excluir!");
+	        return;
+	    }
+	    
+	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
+	    if (confirm == JOptionPane.YES_OPTION) {
+	        Object valorCelula = telaVisualizarTabela.getTable().getValueAt(linha, 0);
+	        int codigo = Integer.parseInt(valorCelula.toString());
+	 
+	        produtoDAO.excluirProduto(codigo); 
+	        telaVisualizarTabela.atualizarTabela();
+	        JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+	    }
 	}
+
+	public void componentShown(ComponentEvent e) {
+	    telaVisualizarTabela.atualizarTabela(); 
+	}
+
 
 	private void atualizarProduto() {
 
@@ -93,12 +108,5 @@ public class VisualizarTabelaController  extends ComponentAdapter{
 		}
 		
 	}
-	public void componentShown(ComponentEvent e) {
-		this.atualizarTabela();
-	}
-	public void atualizarTabela() {
-		ProdutoDAO produtoDAO = new ProdutoDAO();
-		List<Produto> lista = produtoDAO.listarProduto();
-		ProdutoTableModel model = new ProdutoTableModel(lista);
-	}
+
 }
