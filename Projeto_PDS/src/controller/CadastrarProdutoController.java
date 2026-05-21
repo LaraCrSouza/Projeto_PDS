@@ -69,6 +69,8 @@ public class CadastrarProdutoController {
 			return;
 		}
 
+	    try {
+
 		Produto produto = new Produto();
 
 		produto.setNome(cadastro.gettfNome().getText());
@@ -82,14 +84,22 @@ public class CadastrarProdutoController {
 		produto.setComprimento(Float.parseFloat(cadastro.gettfComprimento().getText()));
 		produto.setPreco(Double.parseDouble(cadastro.gettfPreco().getText()));
 
-		produtoDAO.adicionarProduto(produto);
-		visualizarTabela.atualizarTabela();
-		limparCampos();
+	
+		
 
 		JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+		produtoDAO.adicionarProduto(produto);
+		visualizarTabela.atualizarTabela();
+		
+		limparCampos();
 
+	} catch (NumberFormatException ex) {
+	        JOptionPane.showMessageDialog(null, "Erro: Verifique se os campos numéricos foram digitados corretamente.");
+	        limparCampos();
+
+		}
+	    
 	}
-
 	public void limparCampos() {
 		cadastro.gettfAltura().setText("");
 		cadastro.gettfCodigo().setText("");
@@ -101,5 +111,7 @@ public class CadastrarProdutoController {
 		cadastro.gettfPreco().setText("");
 		cadastro.gettfURL().setText("");
 	}
+
+
 
 }

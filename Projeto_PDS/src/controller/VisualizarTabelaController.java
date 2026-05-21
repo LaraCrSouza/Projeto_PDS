@@ -58,7 +58,7 @@ public class VisualizarTabelaController  extends ComponentAdapter{
 	    
 	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja excluir?", "Confirmação", JOptionPane.YES_NO_OPTION);
 	    if (confirm == JOptionPane.YES_OPTION) {
-	        Object valorCelula = telaVisualizarTabela.getTable().getValueAt(linha, 0);
+	        Object valorCelula = telaVisualizarTabela.getTable().getValueAt(linha, 5);
 	        int codigo = Integer.parseInt(valorCelula.toString());
 	 
 	        produtoDAO.excluirProduto(codigo); 
@@ -74,39 +74,39 @@ public class VisualizarTabelaController  extends ComponentAdapter{
 
 	private void atualizarProduto() {
 
-		int linhaSelecionada = (int) telaVisualizarTabela.getTable().getSelectedRow();
-		int codigo = (int) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 0);
+	    int linhaSelecionada = telaVisualizarTabela.getTable().getSelectedRow();
 
-		if (linhaSelecionada == -1) {
-			JOptionPane.showMessageDialog(null, "Selecione um produto!");
-			return;
-		}
 
-		codigo = (int) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 0);
-		String nome = (String) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 1);
-		String URL = (String) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 2);
-		String marca = (String) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 3);
-		String categorias = (String) telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 4);
-		float peso = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 5).toString());
-		float altura = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 6).toString());
-		float largura = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 7).toString());
-		float comprimento = Float
-				.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 8).toString());
-		float PesoBruto = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 9).toString());
-		double preco = Double.parseDouble(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 10).toString());
+	    if (linhaSelecionada == -1) {
+	        JOptionPane.showMessageDialog(null, "Selecione um produto!");
+	        return;
+	    }
 
-		int confirm = JOptionPane.showConfirmDialog(null, "Deseja atualizar?", "Confirmação",
-				JOptionPane.YES_NO_OPTION);
+	    int codigo = Integer.parseInt(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 5).toString());
+	    
+	    String nome = telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 1).toString();
+	    String URL = telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 2).toString();
+	    String marca = telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 3).toString();
+	    String categorias = telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 4).toString();
+	    
+	    float peso = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 5).toString());
+	    float altura = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 6).toString());
+	    float largura = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 7).toString());
+	    float comprimento = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 8).toString());
+	    float PesoBruto = Float.parseFloat(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 9).toString());
+	    double preco = Double.parseDouble(telaVisualizarTabela.getTable().getValueAt(linhaSelecionada, 10).toString());
 
-		if (confirm == JOptionPane.YES_OPTION) {
-			Produto produto = new Produto(codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento,
-					preco);
+	    int confirm = JOptionPane.showConfirmDialog(null, "Deseja atualizar?", "Confirmação",
+	            JOptionPane.YES_NO_OPTION);
 
-			produtoDAO.atualizarProduto(produto);
+	    if (confirm == JOptionPane.YES_OPTION) {
+	        Produto produto = new Produto(codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento,
+	                preco);
 
-			JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
-		}
-		
+	        produtoDAO.atualizarProduto(produto);
+
+	        JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+	    }
 	}
 
 }
