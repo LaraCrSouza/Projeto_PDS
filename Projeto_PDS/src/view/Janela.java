@@ -35,7 +35,27 @@ public class Janela extends JFrame {
 	}
 
 	public void mostrarTela(String nome) {
-		this.cardLayout.show(this.contentPane, nome);
-		this.pack();
+
+	    if (nome.equals("LOGIN")) {
+	        setTitle("Login");
+	    }
+	    else if (nome.equals("CADASTRO USUARIO")) {
+	        setTitle("Cadastro");
+	    }
+	    else if (nome.equals("CADASTRO PRODUTO")) {
+	        setTitle("Cadastro de Produto");
+	    }
+	    else if (nome.equals("COMPRAS")) {
+	        setTitle("Compras");
+	    }
+	    else if (nome.equals("CARRINHO")) {
+	        setTitle("Carrinho");
+	    }
+	    else if (nome.equals("FINALIZAR COMPRA")) {
+	        setTitle("Finalizar Compra");
+	    }
+
+	    this.cardLayout.show(this.contentPane, nome);
+	    this.pack();
 	}
 }

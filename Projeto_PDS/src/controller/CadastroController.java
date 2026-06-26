@@ -24,7 +24,6 @@ public class CadastroController {
 
 		this.cadastro.cadastrar(e -> {
 			verificarCadastroUsuario();
-			limparCamposCadastro();
 		});
 
 		this.cadastro.voltar(new MouseAdapter() {
@@ -39,32 +38,53 @@ public class CadastroController {
 
 	private void verificarCadastroUsuario() {
 
-		if (cadastro.gettfNomeC().getText().isEmpty() || cadastro.gettfEmailC().getText().isEmpty()) {
+		String nome = cadastro.gettfNomeC().getText();
+		String email = cadastro.gettfEmailC().getText();
 
-			JOptionPane.showMessageDialog(null, "Prencha todos os campos", "Informação", 1);
-
-		} else {
-
-			Usuario novoUsuario = new Usuario();
-			novoUsuario.setNome(cadastro.gettfNomeC().getText());
-			novoUsuario.setEmail(cadastro.gettfEmailC().getText());
-			novoUsuario.settipoUsuario(cadastro.getcbTipoUsuario().getSelectedItem().toString());
-
-			user.adicionarUsuario(novoUsuario);
-
-			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-
-			navegador.navegarPara("LOGIN");
-			limparCamposLogin();
-
+		if (nome.isEmpty() || email.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Prencha todos os campos", "Informação",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
 		}
 
+		if (!email.contains("@") || email.substring(0, email.indexOf("@")).contains(" ")) {
+			JOptionPane.showMessageDialog(null, "Por favor, insira um e-mail válido", "Erro",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		try {
+			for (Usuario u : user.listarUsuarios()) {
+				if (u.getEmail().equals(email)) {
+					JOptionPane.showMessageDialog(null, "Este e-mail já está cadastrado no sistema.",
+							"E-mail Duplicado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+			}
+
+			Usuario novoUsuario = new Usuario();
+			novoUsuario.setNome(nome);
+			novoUsuario.setEmail(email);
+			Object tipo = cadastro.getcbTipoUsuario().getSelectedItem();
+			if (tipo == null) {
+				JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			novoUsuario.settipoUsuario(tipo.toString());
+
+			user.adicionarUsuario(novoUsuario);
+			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+			navegador.navegarPara("LOGIN");
+			limparCamposCadastro();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário no banco de dados. Tente novamente.",
+					"Erro de Conexão", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
-	public void limparCamposLogin() {
-		cadastro.gettfEmailC().setText("");
-		cadastro.gettfNomeC().setText("");
-	}
+
 
 	public void limparCamposCadastro() {
 		cadastro.gettfEmailC().setText("");

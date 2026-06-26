@@ -57,8 +57,8 @@ public class TelaFinalizarCompra extends JPanel {
 		panel.add(lblNewLabel_2, "cell 0 2");
 
 		taQntdProdutos = new JTextArea();
+		taQntdProdutos.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		taQntdProdutos.setEditable(false);
-		taQntdProdutos.setEnabled(false);
 		taQntdProdutos.setBackground(new Color(186, 216, 239));
 		panel.add(taQntdProdutos, "cell 1 2 2 1");
 
@@ -67,8 +67,8 @@ public class TelaFinalizarCompra extends JPanel {
 		panel.add(lblNewLabel_4, "cell 0 4");
 
 		taTotal = new JTextArea();
+		taTotal.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		taTotal.setEditable(false);
-		taTotal.setEnabled(false);
 		taTotal.setBackground(new Color(186, 216, 239));
 		panel.add(taTotal, "cell 1 4 2 1");
 

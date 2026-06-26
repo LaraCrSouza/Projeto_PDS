@@ -72,47 +72,38 @@ public class TelaVisualizarProduto extends JPanel {
 		add(lblNewLabel_7, "cell 9 0,alignx center,aligny bottom");
 		
 		taCodigo = new JTextArea();
-		taCodigo.setEnabled(false);
 		taCodigo.setEditable(false);
 		add(taCodigo, "cell 1 2,grow");
 		
 		taNome = new JTextArea();
-		taNome.setEnabled(false);
 		taNome.setEditable(false);
 		add(taNome, "cell 2 2,grow");
 		
 		taURL = new JTextArea();
-		taURL.setEnabled(false);
 		taURL.setEditable(false);
 		add(taURL, "cell 3 2,grow");
 		
 		taMarca = new JTextArea();
-		taMarca.setEnabled(false);
 		taMarca.setEditable(false);
 		add(taMarca, "cell 4 2,grow");
 		
 		taCategorias = new JTextArea();
-		taCategorias.setEnabled(false);
 		taCategorias.setEditable(false);
 		add(taCategorias, "cell 5 2,grow");
 		
 		taPesoBruto = new JTextArea();
-		taPesoBruto.setEnabled(false);
 		taPesoBruto.setEditable(false);
 		add(taPesoBruto, "cell 6 2,grow");
 		
 		taAltura = new JTextArea();
-		taAltura.setEnabled(false);
 		taAltura.setEditable(false);
 		add(taAltura, "cell 7 2,grow");
 		
 		taLargura = new JTextArea();
-		taLargura.setEnabled(false);
 		taLargura.setEditable(false);
 		add(taLargura, "cell 8 2,grow");
 		
 		taComprimento = new JTextArea();
-		taComprimento.setEnabled(false);
 		taComprimento.setEditable(false);
 		add(taComprimento, "cell 9 2,grow");
 

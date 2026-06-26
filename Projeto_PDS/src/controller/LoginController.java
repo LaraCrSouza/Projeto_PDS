@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import model.CarrinhoDAO;
+import model.Produto;
+import model.ProdutoDAO;
 import model.Usuario;
 import model.UsuarioDAO;
 import view.TelaLogin;
@@ -13,12 +16,19 @@ public class LoginController {
 	private TelaLogin login;
 	private UsuarioDAO user;
 	private Navegador navegador;
+	private CarrinhoDAO carrinhoDAO;
+	private ProdutoDAO produtoDAO;
+	private List<Produto> carrinho;
 
-	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador) {
+	public LoginController(TelaLogin login, UsuarioDAO user, Navegador navegador, CarrinhoDAO carrinhoDAO,
+			ProdutoDAO produtoDAO, List<Produto> carrinho) {
 		super();
 		this.login = login;
 		this.user = user;
 		this.navegador = navegador;
+		this.carrinhoDAO = carrinhoDAO;
+		this.produtoDAO = produtoDAO;
+		this.carrinho = carrinho;
 
 		this.login.logar(e -> {
 			verificarCadastroUsuario();
@@ -31,41 +41,60 @@ public class LoginController {
 	}
 
 	private void verificarCadastroUsuario() {
-		List<Usuario> usuario = user.listarUsuarios();
 
-		if (login.gettfNomeL().getText().isEmpty() || login.gettfEmailL().getText().isEmpty()) {
+		String nomeDigitado = login.gettfNomeL().getText();
+		String emailDigitado = login.gettfEmailL().getText();
+
+		if (nomeDigitado.isEmpty() || emailDigitado.isEmpty()) {
 
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
-		} else {
+			return;
+
+		}
+		try {
+
+			List<Usuario> usuario = user.listarUsuarios();
 			boolean usuarioEncontrado = false;
 			String tipoUsuario = "";
 
-			for (Usuario user : usuario) {
+			for (Usuario u : usuario) {
 
-				if (user.gettipoUsuario().equals("Administrador") && user.getNome().equals(login.gettfNomeL().getText())
-						&& user.getEmail().equals(login.gettfEmailL().getText())) {
+				if ("Administrador".equals(u.gettipoUsuario()) && u.getNome().equals(nomeDigitado)
+						&& u.getEmail().equals(emailDigitado)) {
 
 					usuarioEncontrado = true;
 					tipoUsuario = "Administrador";
+					navegador.setUsuarioLogadoId(u.getId());
 					break;
-				} else if (user.gettipoUsuario().equals("Cliente")
-						&& user.getNome().equals(login.gettfNomeL().getText())
-						&& user.getEmail().equals(login.gettfEmailL().getText())) {
+
+				} else if ("Cliente".equals(u.gettipoUsuario()) && u.getNome().equals(nomeDigitado)
+						&& u.getEmail().equals(emailDigitado)) {
 					usuarioEncontrado = true;
 					tipoUsuario = "Cliente";
+					navegador.setUsuarioLogadoId(u.getId());
 					break;
 				}
 			}
-			if (usuarioEncontrado == true) {
-				if (tipoUsuario.equals("Administrador")) {
+			if (usuarioEncontrado) {
+				if ("Administrador".equals(tipoUsuario)) {
 					navegador.navegarPara("CADASTRO PRODUTO");
-				} else if (tipoUsuario.equals("Cliente")) {
+				} else if ("Cliente".equals(tipoUsuario)) {
+					carrinho.clear();
+
+					carrinho.addAll(carrinhoDAO.listarCarrinho(produtoDAO));
+
+					navegador.getTelaCompras().atualizarCarrinhoTexto(carrinho.size());
+
+					navegador.getTelaCarrinho().preencherTabela(carrinho);
 					navegador.navegarPara("COMPRAS");
 				}
-
 			} else {
 				JOptionPane.showMessageDialog(null, "Usuário não encontrado");
 			}
+		} catch (Exception e) {
+
+			JOptionPane.showMessageDialog(null, "Erro ao conectar. Tente novamente mais tarde. ", "Erro de Conexão",
+					JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

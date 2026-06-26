@@ -1,10 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Usuario;
 import view.Janela;
 import view.TelaCarrinho;
+import view.TelaCompras;
 import view.TelaFinalizarCompra;
 import view.TelaLogin;
 import view.TelaVisualizarProduto;
@@ -19,8 +23,19 @@ public class Navegador {
 	private TelaFinalizarCompra finalizar;
 	private TelaVisualizarProduto telaVisualizarProduto;
 	private CarrinhoController carrinhoController;
-
+	private TelaCompras telaCompras;
+	private int usuarioLogadoId;
 	
+	
+
+	public void setUsuarioLogadoId(int id) {
+	    this.usuarioLogadoId = id;
+	}
+	
+	public int getUsuarioLogadoId() {
+	    return usuarioLogadoId;
+	}
+
 	public void setCarrinhoController(CarrinhoController carrinhoController) {
 	    this.carrinhoController = carrinhoController;
 	}
@@ -57,5 +72,23 @@ public class Navegador {
 	public TelaVisualizarProduto getTelaVisualizarProduto() {
 		return telaVisualizarProduto;
 	}
+	
+	public void setTelaCompras (TelaCompras compras) {
+		this.telaCompras = compras;
+	}
+	public TelaCompras  getTelaCompras() {
+		return telaCompras;
+	}
+
+	public TelaFinalizarCompra getFinalizar() {
+		return finalizar;
+	}
+
+	public void setFinalizar(TelaFinalizarCompra finalizar) {
+		this.finalizar = finalizar;
+	}
+	
+
+	
 
 }

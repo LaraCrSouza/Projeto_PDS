@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class TelaLogin extends JPanel {
+public class TelaLogin extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNomeL;
@@ -30,8 +30,7 @@ public class TelaLogin extends JPanel {
 
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
-		setLayout(new MigLayout("debug, insets 30 15 30 60, flowy, gap 10", "[200px,center][][grow][grow]",
-				"[grow][grow 15][grow 5][grow 5][grow 5][grow 3][][][grow]"));
+		setLayout(new MigLayout("insets 30 15 30 60, flowy, gap 10", "[200px,center][][grow][grow]", "[grow][grow 15][grow 5][grow 5][grow 5][grow 3][][][][grow]"));
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(
@@ -59,19 +58,15 @@ public class TelaLogin extends JPanel {
 		this.btnLogin = new JButton("Login");
 		this.btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		add(this.btnLogin, "cell 2 6,alignx center,aligny top");
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(221, 235, 247));
-		add(panel_1, "cell 2 8,grow");
-
-		JLabel lblNewLabel_2 = new JLabel("Ainda não tem uma conta?");
-		lblNewLabel_2.setForeground(new Color(0, 0, 64));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel_1.add(lblNewLabel_2);
-
-		this.btnCadastrase = new JButton("Cadastra-se");
-		this.btnCadastrase.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel_1.add(this.btnCadastrase);
+								
+										JLabel lblNewLabel_2 = new JLabel("Ainda não tem uma conta?");
+										add(lblNewLabel_2, "flowx,cell 2 8");
+										lblNewLabel_2.setForeground(new Color(0, 0, 64));
+										lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+								
+										this.btnCadastrase = new JButton("Cadastra-se");
+										add(btnCadastrase, "cell 2 8,alignx right");
+										this.btnCadastrase.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
 	}
 

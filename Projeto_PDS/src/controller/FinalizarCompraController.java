@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import model.CarrinhoDAO;
 import model.Produto;
 import model.Usuario;
 import model.UsuarioDAO;
@@ -19,14 +20,18 @@ public class FinalizarCompraController {
 	private Navegador navegador;
 	private List<Produto> carrinho;
 	private NotaFiscal notaFiscal;
+	private CarrinhoController carrinhoController;
+	private CarrinhoDAO carrinhoDAO;
 
 	public FinalizarCompraController(TelaFinalizarCompra finalizar, Navegador navegador, List<Produto> carrinho,
-			NotaFiscal notaFiscal) {
+			NotaFiscal notaFiscal, CarrinhoController carrinhoController, CarrinhoDAO carrinhoDAO) {
 		super();
 		this.finalizar = finalizar;
 		this.navegador = navegador;
 		this.carrinho = carrinho;
 		this.notaFiscal = notaFiscal;
+		this.carrinhoController = carrinhoController;
+		this.carrinhoDAO = carrinhoDAO;
 
 		this.finalizar.finalizarCompra(e -> {
 			finalizarCompra();
@@ -49,13 +54,25 @@ public class FinalizarCompraController {
 			JOptionPane.showMessageDialog(null, "Selecione a forma de pagamento!");
 			return;
 		}
-		if (finalizar.getrbDebito().isSelected()) {
-			notaFiscal.preencherNota(carrinho, "Débito", total);
-			navegador.navegarPara("NOTA FISCAL");
-		} else {
-			notaFiscal.preencherNota(carrinho, "Crédito", total);
-			navegador.navegarPara("NOTA FISCAL");
-		}
+		String formaPagamento = finalizar.getrbDebito().isSelected() ? "Débito" : "Crédito";
+		notaFiscal.preencherNota(carrinho, formaPagamento, total);
+		notaFiscal.setVisible(true);
 
+		notaFiscal.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosed(java.awt.event.WindowEvent e) {
+				try {
+					carrinhoDAO.limparCarrinho();
+					carrinho.clear();
+					carrinhoController.atualizarTela();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Erro ao limpar o carrinho. Tente novamente.", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				notaFiscal.removeWindowListener(this); 
+			}
+		});
 	}
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class ProdutoTableModel extends AbstractTableModel {
 
 	private final List<Produto> dados;
-	private final String[] colunas = { "Nome", "Marca", "Categorias", "URL", "Altura", "Codigo", "Comprimento",
+	private final String[] colunas = { "Nome", "Marca", "Categorias", "URL", "Codigo", "Comprimento",
 			"Largura", "PesoBruto", "Altura", "Preco" };
 
 	public ProdutoTableModel(List<Produto> dados) {
@@ -48,18 +48,16 @@ public class ProdutoTableModel extends AbstractTableModel {
 		case 3:
 			return p.getURL();
 		case 4:
-			return p.getAltura();
-		case 5:
 			return p.getCodigo();
-		case 6:
+		case 5:
 			return p.getComprimento();
-		case 7:
+		case 6:
 			return p.getLargura();
-		case 8:
+		case 7:
 			return p.getPesoBruto();
-		case 9:
+		case 8:
 			return p.getAltura();
-		case 10:
+		case 9:
 			return p.getPreco();
 
 		default:

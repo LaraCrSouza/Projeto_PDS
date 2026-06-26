@@ -44,11 +44,13 @@ public class TelaCompras extends JPanel {
 	private JButton btnFinalizar, btnVerMais;
 	private JButton btnAdicionarCarrinho;
 	private JLabel lbIrParaCarrinho;
-	private JTextArea textArea;
 	private JLabel lblContador;
 	private int contadorItens = 0;
 	private java.util.List<Produto> carrinho = new java.util.ArrayList<>();
 	private java.util.List<Produto> listaProdutos;
+	private JLabel lbVoltarLogin;
+	private JLabel lbSair;
+	private JLabel lbQuantidade;
 
 	public TelaCompras() {
 		setBackground(new Color(221, 235, 247));
@@ -56,11 +58,13 @@ public class TelaCompras extends JPanel {
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
 		setLayout(new MigLayout("", "[95.00][463.00][460.00][95.00]", "[179.00][323.00][228.00][]"));
-
-		textArea = new JTextArea();
-		textArea.setBackground(new Color(221, 235, 247));
-		textArea.setEditable(false);
-		add(textArea, "flowx,cell 3 0,alignx right");
+		
+		lbVoltarLogin = new JLabel("");
+		lbVoltarLogin.setIcon(new ImageIcon(TelaCompras.class.getResource("/Imagens/botao-voltar40.png")));
+		add(lbVoltarLogin, "flowx,cell 0 0");
+		
+		lbQuantidade = new JLabel("0");
+		add(lbQuantidade, "flowx,cell 3 0,alignx right");
 
 		lbIrParaCarrinho = new JLabel("");
 		lbIrParaCarrinho.setIcon(new ImageIcon(TelaCompras.class.getResource("/Imagens/carrinho-de-compras30.png")));
@@ -72,10 +76,14 @@ public class TelaCompras extends JPanel {
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Preço", "Código" }));
 		scrollPane.setViewportView(table);
+		
+		lbSair = new JLabel("Sair");
+		lbSair.setIcon(new ImageIcon(TelaCompras.class.getResource("/Imagens/sair30.png")));
+		add(lbSair, "cell 0 2,aligny bottom");
 
 		btnVerMais = new JButton("Ver informações adicionais");
 		btnVerMais.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btnVerMais, "flowx,cell 1 2,alignx center");
+		add(btnVerMais, "cell 1 2,alignx center");
 
 		btnFinalizar = new JButton("Finalizar Compra");
 		btnFinalizar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -118,9 +126,9 @@ public class TelaCompras extends JPanel {
 		return table.getSelectedRow();
 	}
 
-	public int getCodigoSelecionado() {
-		int linha = table.getSelectedRow();
-		return (int) table.getValueAt(linha, 2);
+	public String getCodigoSelecionado() {
+	    int linha = table.getSelectedRow();
+	    return (String) table.getValueAt(linha, 2);
 	}
 
 	public void atualizarContador(int quantidade) {
@@ -128,7 +136,8 @@ public class TelaCompras extends JPanel {
 	}
 
 	public void atualizarCarrinhoTexto(int quantidade) {
-		textArea.setText("" + quantidade);
+		lbQuantidade.setText(String.valueOf(quantidade));
+	    lbQuantidade.repaint();
 	}
 
 	public void IrParaCarrinho(MouseListener actionListener) {
@@ -142,5 +151,13 @@ public class TelaCompras extends JPanel {
 	public void VerMais(ActionListener actionListener) {
 		this.btnVerMais.addActionListener(actionListener);
 	}
+	
+	public void VoltarLogin (MouseListener actionListener) {
+		this.lbVoltarLogin.addMouseListener(actionListener);
+	}
+	public void Sair (MouseListener actionListener) {
+		this.lbSair.addMouseListener(actionListener);
+	}
+
 
 }

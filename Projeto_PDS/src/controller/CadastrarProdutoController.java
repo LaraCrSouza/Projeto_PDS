@@ -17,18 +17,21 @@ public class CadastrarProdutoController {
 	private Navegador navegador;
 	private VisualizarTabelaController visualizarController;
 	private TelaVisualizarTabela visualizarTabela;
+	private ComprasController comprasController;
 
 	public CadastrarProdutoController(TelaCadastrarProduto cadastro, ProdutoDAO produtoDAO, Navegador navegador,
-			VisualizarTabelaController visualizarController, TelaVisualizarTabela visualizarTabela) {
+			VisualizarTabelaController visualizarController, TelaVisualizarTabela visualizarTabela,
+			ComprasController comprasController) {
 		super();
 		this.cadastro = cadastro;
 		this.produtoDAO = produtoDAO;
 		this.navegador = navegador;
 		this.visualizarController = visualizarController;
 		this.visualizarTabela = visualizarTabela;
+		this.comprasController = comprasController;
 
 		this.cadastro.cadastrar(e -> {
-			CadastroProduto();
+			cadastroProduto();
 		});
 
 		this.cadastro.irParaTabela(new MouseAdapter() {
@@ -49,16 +52,15 @@ public class CadastrarProdutoController {
 
 	}
 
-	private void CadastroProduto() {
+	private void cadastroProduto() {
 
 		if (cadastro.gettfNome().getText().isEmpty() || cadastro.gettfCodigo().getText().isEmpty()
 				|| cadastro.gettfURL().getText().isEmpty() || cadastro.gettfPesoBruto().getText().isEmpty()
 				|| cadastro.gettfAltura().getText().isEmpty() || cadastro.gettfLargura().getText().isEmpty()
 				|| cadastro.gettfComprimento().getText().isEmpty() || cadastro.gettfPreco().getText().isEmpty()
-				|| cadastro.gettfMarca().getText().isEmpty()) {
+				|| cadastro.gettfMarca().getText().isEmpty() || cadastro.gettfQuantidade().getText().isEmpty()) {
 
 			JOptionPane.showMessageDialog(null, "Prencha todos os campos");
-			limparCampos();
 			return;
 		}
 
@@ -69,37 +71,52 @@ public class CadastrarProdutoController {
 			return;
 		}
 
-	    try {
+		try {
 
-		Produto produto = new Produto();
+			Produto produto = new Produto();
 
-		produto.setNome(cadastro.gettfNome().getText());
-		produto.setCodigo(Integer.parseInt(cadastro.gettfCodigo().getText()));
-		produto.setURL(cadastro.gettfURL().getText());
-		produto.setMarca(cadastro.gettfMarca().getText());
-		produto.setCategorias(cadastro.getcbCategorias().getSelectedItem().toString());
-		produto.setPesoBruto(Float.parseFloat(cadastro.gettfPesoBruto().getText()));
-		produto.setAltura(Float.parseFloat(cadastro.gettfAltura().getText()));
-		produto.setLargura(Float.parseFloat(cadastro.gettfLargura().getText()));
-		produto.setComprimento(Float.parseFloat(cadastro.gettfComprimento().getText()));
-		produto.setPreco(Double.parseDouble(cadastro.gettfPreco().getText()));
+			produto.setNome(cadastro.gettfNome().getText());
+			produto.setCodigo(cadastro.gettfCodigo().getText());
+			produto.setURL(cadastro.gettfURL().getText());
+			produto.setMarca(cadastro.gettfMarca().getText());
+			produto.setCategorias(cadastro.getcbCategorias().getSelectedItem().toString());
+			produto.setPesoBruto(Float.parseFloat(cadastro.gettfPesoBruto().getText()));
+			produto.setAltura(Float.parseFloat(cadastro.gettfAltura().getText()));
+			produto.setLargura(Float.parseFloat(cadastro.gettfLargura().getText()));
+			produto.setComprimento(Float.parseFloat(cadastro.gettfComprimento().getText()));
+			produto.setPreco(Double.parseDouble(cadastro.gettfPreco().getText()));
+			produto.setQuantidade(Integer.parseInt(cadastro.gettfQuantidade().getText()));
 
-	
-		
+			produtoDAO.adicionarProduto(produto);
+			visualizarTabela.atualizarTabela();
+			comprasController.carregarProdutos();
 
-		JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-		produtoDAO.adicionarProduto(produto);
-		visualizarTabela.atualizarTabela();
-		
-		limparCampos();
+			JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
 
-	} catch (NumberFormatException ex) {
-	        JOptionPane.showMessageDialog(null, "Erro: Verifique se os campos numéricos foram digitados corretamente.");
-	        limparCampos();
+			limparCampos();
+
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null,
+					"Verifique se os campos Peso, Altura, Largura, Comprimento, Preço e Quantidade foram preenchidos corretamente.");
+		}
+
+		catch (Exception e) {
+
+			String msg = e.getMessage() != null ? e.getMessage() : "";
+
+			if (msg.contains("Duplicate entry") || msg.contains("PRIMARY")) {
+				JOptionPane.showMessageDialog(null,
+						"O código '" + cadastro.gettfCodigo().getText() + "' já está cadastrado para outro produto!",
+						"Código Duplicado", JOptionPane.WARNING_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "Erro ao salvar o produto no banco de dados. Tente novamente.",
+						"Erro de Conexão", JOptionPane.ERROR_MESSAGE);
+			}
 
 		}
-	    
+
 	}
+
 	public void limparCampos() {
 		cadastro.gettfAltura().setText("");
 		cadastro.gettfCodigo().setText("");
@@ -110,8 +127,7 @@ public class CadastrarProdutoController {
 		cadastro.gettfPesoBruto().setText("");
 		cadastro.gettfPreco().setText("");
 		cadastro.gettfURL().setText("");
+		cadastro.gettfQuantidade().setText("");
 	}
-
-
 
 }

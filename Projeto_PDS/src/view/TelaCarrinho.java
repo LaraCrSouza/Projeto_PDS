@@ -157,4 +157,16 @@ public class TelaCarrinho extends JPanel {
 		this.lbVoltarCompras.addMouseListener(actionListener);
 	}
 
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addAll(List<Produto> listarCarrinho) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

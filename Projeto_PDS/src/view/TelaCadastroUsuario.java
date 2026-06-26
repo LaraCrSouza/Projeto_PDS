@@ -18,7 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class TelaCadastroUsuario extends JPanel {
+public class TelaCadastroUsuario extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNomeC;

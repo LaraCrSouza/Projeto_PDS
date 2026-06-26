@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ProdutoDAO {
 
-	public void adicionarProduto(Produto produto) {
-		String sql = "INSERT INTO produto (codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public void adicionarProduto(Produto produto) throws SQLException {
+		String sql = "INSERT INTO produto (codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		Connection conexao = null;
 		PreparedStatement pstm = null;
@@ -19,7 +19,7 @@ public class ProdutoDAO {
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setInt(1, produto.getCodigo());
+			pstm.setString(1, produto.getCodigo());
 			pstm.setString(2, produto.getNome());
 			pstm.setString(3, produto.getURL());
 			pstm.setString(4, produto.getMarca());
@@ -29,10 +29,10 @@ public class ProdutoDAO {
 			pstm.setFloat(8, produto.getLargura());
 			pstm.setFloat(9, produto.getComprimento());
 			pstm.setDouble(10, produto.getPreco());
+			pstm.setInt(11, produto.getQuantidade());
 
 			pstm.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
+
 		} finally {
 			BancoDeDados.desconectar(conexao);
 			if (pstm != null) {
@@ -67,7 +67,8 @@ public class ProdutoDAO {
 				produto.setAltura(rset.getFloat("altura"));
 				produto.setComprimento(rset.getFloat("comprimento"));
 				produto.setPreco(rset.getDouble("preco"));
-				produto.setCodigo(rset.getInt("codigo"));
+				produto.setQuantidade(rset.getInt("quantidade"));
+				produto.setCodigo(rset.getString("codigo"));
 				produto.setLargura(rset.getFloat("largura"));
 				listaProduto.add(produto);
 
@@ -81,8 +82,8 @@ public class ProdutoDAO {
 		return listaProduto;
 	}
 
-	public void atualizarProduto(Produto produto) {
-		String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, largura = ?, preco = ? WHERE codigo = ?";
+	public void atualizarProduto(Produto produto, String codigoOriginal) {
+		String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, largura = ?, preco = ?, quantidade =?, codigo = ? WHERE codigo = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
 
@@ -98,7 +99,9 @@ public class ProdutoDAO {
 			pstm.setFloat(7, produto.getComprimento());
 			pstm.setFloat(8, produto.getLargura());
 			pstm.setDouble(9, produto.getPreco());
-			pstm.setInt(10, produto.getCodigo());
+			pstm.setDouble(10, produto.getQuantidade());
+			pstm.setString(11, produto.getCodigo());
+			pstm.setString(12, codigoOriginal);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,20 +110,52 @@ public class ProdutoDAO {
 		}
 	}
 
-	public void excluirProduto(int codigo) {
+	public void excluirProduto(String codigo) {
 		String sql = "DELETE FROM produto WHERE codigo = ?";
 		Connection conexao = null;
 		PreparedStatement pstm = null;
-
 		try {
 			conexao = BancoDeDados.conectar();
 			pstm = conexao.prepareStatement(sql);
-			pstm.setInt(1, codigo);
+			pstm.setString(1, codigo);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			BancoDeDados.desconectar(conexao);
 		}
+	}
+
+	public Produto buscarPorCodigo(String codigo) {
+		String sql = "SELECT * FROM produto WHERE codigo = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Produto produto = null;
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, codigo);
+			rset = pstm.executeQuery();
+			if (rset.next()) {
+				produto = new Produto();
+				produto.setCodigo(rset.getString("codigo"));
+				produto.setNome(rset.getString("nome"));
+				produto.setURL(rset.getString("URL"));
+				produto.setMarca(rset.getString("marca"));
+				produto.setCategorias(rset.getString("categorias"));
+				produto.setPesoBruto(rset.getFloat("PesoBruto"));
+				produto.setAltura(rset.getFloat("altura"));
+				produto.setLargura(rset.getFloat("largura"));
+				produto.setComprimento(rset.getFloat("comprimento"));
+				produto.setPreco(rset.getDouble("preco"));
+				produto.setQuantidade(rset.getInt("quantidade"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
+		return produto;
 	}
 }

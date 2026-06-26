@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Produto {
 
-	private int codigo;
+	private String codigo;
 	private String nome;
 	private String URL;
 	private String marca;
@@ -14,12 +14,13 @@ public class Produto {
 	private float largura;
 	private float comprimento;
 	private double preco;
+	private int quantidade;
 
 	public Produto() {
 	}
 
-	public Produto(int codigo, String nome, String URL, String marca, String categorias, float PesoBruto, float altura,
-			float largura, float comprimento, double preco) {
+	public Produto(String codigo, String nome, String URL, String marca, String categorias, float PesoBruto, float altura,
+			float largura, float comprimento, double preco, int quantidade) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.URL = URL;
@@ -33,11 +34,11 @@ public class Produto {
 	}
 
 	// Getters e Setters
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -112,5 +113,12 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-
+	public int getQuantidade() {
+		return quantidade;
+	}
+	
+	public void setQuantidade (int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
 }
