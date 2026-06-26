@@ -7,6 +7,11 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import controller.ProdutoTableModel;
+import model.Produto;
+import model.ProdutoDAO;
+
 import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -16,11 +21,12 @@ import java.awt.Color;
 import java.awt.Label;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
-public class TelaCadastrarProduto extends JPanel {
+public class EditarProduto extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfCodigo;
@@ -31,41 +37,29 @@ public class TelaCadastrarProduto extends JPanel {
 	private JTextField tfLargura;
 	private JTextField tfComprimento;
 	private JTextField tfPreco;
-	private JButton btnCadastrarP;
-	private JLabel lbIrTabela;
+	private JButton Atualizar;
 	private JComboBox cbCategorias;
 	private JTextField tfMarca;
-	private JLabel lbSair;
-	private JTextField tfQuantidade;
+	private JLabel lbVoltar;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaCadastrarProduto() {
+	public EditarProduto() {
 
 		setMinimumSize(new Dimension(1020, 640));
 		setPreferredSize(new Dimension(1020, 640));
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(117, 162, 244));
-		add(panel, BorderLayout.WEST);
-		panel.setLayout(new MigLayout("", "[]", "[][grow][]"));
-
-		this.lbIrTabela = new JLabel("");
-		this.lbIrTabela
-				.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/tabela-de-edicao40.png")));
-		this.lbIrTabela.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panel.add(this.lbIrTabela, "cell 0 1,growx,aligny top");
-
-		lbSair = new JLabel("");
-		lbSair.setIcon(new ImageIcon(TelaCadastrarProduto.class.getResource("/Imagens/sair30.png")));
-		panel.add(lbSair, "cell 0 2,alignx center,growy");
-
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(221, 235, 247));
 		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new MigLayout("insets 0", "[]5[grow]5[200px,grow]5[]5[]", "[grow][grow][grow][grow][grow][grow][][][][][grow][][grow][grow][grow][grow][51.00,grow][80.00,grow]"));
+		panel_1.setLayout(new MigLayout("insets 0", "[]5[grow]5[200px,grow]5[]5[]",
+				"[grow][grow][grow][grow][grow][grow][][][][][grow][grow][grow][grow][grow][51.00,grow][80.00,grow]"));
+		
+		lbVoltar = new JLabel("");
+		lbVoltar.setIcon(new ImageIcon(EditarProduto.class.getResource("/Imagens/botao-voltar40.png")));
+		panel_1.add(lbVoltar, "cell 1 0");
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(
@@ -125,47 +119,38 @@ public class TelaCadastrarProduto extends JPanel {
 				"Higiene e Beleza", "Limpeza", "Congelados", "Utilidades e Bazar", "Pet Shop", "Eletrônicos" }));
 		this.cbCategorias.setBackground(new Color(107, 158, 228));
 		panel_1.add(this.cbCategorias, "cell 2 9 2 1,grow");
-				
-						JLabel lbPreco = new JLabel("Preço:");
-						lbPreco.setForeground(new Color(17, 79, 166));
-						lbPreco.setFont(new Font("Tahoma", Font.BOLD, 18));
-						panel_1.add(lbPreco, "cell 1 11,alignx trailing");
-		
-				this.tfPreco = new JTextField();
-				panel_1.add(this.tfPreco, "cell 2 11 2 1,grow");
-				this.tfPreco.setColumns(10);
-		
-		JLabel lbQuantidade = new JLabel("Quantidade");
-		lbQuantidade.setForeground(new Color(17, 79, 166));
-		lbQuantidade.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panel_1.add(lbQuantidade, "cell 1 13,alignx trailing");
-		
-		tfQuantidade = new JTextField();
-		tfQuantidade.setColumns(10);
-		panel_1.add(tfQuantidade, "cell 2 13 2 1,growx");
+
+		JLabel lbPreco = new JLabel("Preço:");
+		lbPreco.setForeground(new Color(17, 79, 166));
+		lbPreco.setFont(new Font("Tahoma", Font.BOLD, 18));
+		panel_1.add(lbPreco, "cell 1 11,alignx trailing");
+
+		this.tfPreco = new JTextField();
+		panel_1.add(this.tfPreco, "cell 2 11 2 1,grow");
+		this.tfPreco.setColumns(10);
 
 		JLabel lbPesoBruto = new JLabel("Peso Bruto:");
 		lbPesoBruto.setForeground(new Color(17, 79, 166));
 		lbPesoBruto.setFont(new Font("Tahoma", Font.BOLD, 16));
-		panel_1.add(lbPesoBruto, "cell 1 14,alignx center,aligny center");
+		panel_1.add(lbPesoBruto, "cell 1 13,alignx center,aligny center");
 
 		JLabel lbAltura = new JLabel("Altura:");
 		lbAltura.setForeground(new Color(17, 79, 166));
 		lbAltura.setFont(new Font("Tahoma", Font.BOLD, 16));
-		panel_1.add(lbAltura, "cell 2 14,alignx center");
+		panel_1.add(lbAltura, "cell 2 13,alignx center");
 
 		JLabel lbLargura = new JLabel("Largura:");
 		lbLargura.setForeground(new Color(17, 79, 166));
 		lbLargura.setFont(new Font("Tahoma", Font.BOLD, 16));
-		panel_1.add(lbLargura, "cell 3 14,alignx center");
+		panel_1.add(lbLargura, "cell 3 13,alignx center");
 
 		JLabel lbComprimento = new JLabel("Comprimento:");
 		lbComprimento.setForeground(new Color(17, 79, 166));
 		lbComprimento.setFont(new Font("Tahoma", Font.BOLD, 16));
-		panel_1.add(lbComprimento, "cell 4 14,alignx center");
+		panel_1.add(lbComprimento, "cell 4 13,alignx center");
 
 		JPanel panel_2 = new JPanel();
-		panel_1.add(panel_2, "flowx,cell 1 15,alignx center");
+		panel_1.add(panel_2, "flowx,cell 1 14,alignx center");
 
 		this.tfPesoBruto = new JTextField();
 		this.tfPesoBruto.setBackground(new Color(255, 255, 255));
@@ -178,7 +163,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_2.add(lblNewLabel_6);
 
 		JPanel panel_3 = new JPanel();
-		panel_1.add(panel_3, "flowx,cell 2 15,alignx center");
+		panel_1.add(panel_3, "flowx,cell 2 14,alignx center");
 
 		this.tfAltura = new JTextField();
 		this.tfAltura.setBackground(new Color(255, 255, 255));
@@ -191,7 +176,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_3.add(lblNewLabel_7);
 
 		JPanel panel_5 = new JPanel();
-		panel_1.add(panel_5, "flowx,cell 4 15,alignx center");
+		panel_1.add(panel_5, "flowx,cell 4 14,alignx center");
 
 		this.tfComprimento = new JTextField();
 		this.tfComprimento.setBackground(new Color(255, 255, 255));
@@ -204,7 +189,7 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_5.add(lblNewLabel_9);
 
 		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4, "flowx,cell 3 15,alignx center");
+		panel_1.add(panel_4, "flowx,cell 3 14,alignx center");
 
 		this.tfLargura = new JTextField();
 		this.tfLargura.setBackground(new Color(255, 255, 255));
@@ -216,9 +201,9 @@ public class TelaCadastrarProduto extends JPanel {
 		panel_4.add(lblNewLabel_8);
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-		this.btnCadastrarP = new JButton("Cadastrar produto");
-		this.btnCadastrarP.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel_1.add(this.btnCadastrarP, "cell 2 17 2 1,alignx center");
+		this.Atualizar = new JButton("Atualizar produto");
+		this.Atualizar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		panel_1.add(this.Atualizar, "cell 2 16 2 1,alignx center");
 
 	}
 
@@ -301,23 +286,18 @@ public class TelaCadastrarProduto extends JPanel {
 	public void settfPreco(JTextField tfPreco) {
 		this.tfPreco = tfPreco;
 	}
-	public JTextField gettfQuantidade() {
-		return tfQuantidade;
-	}
-	public void settfQuantidade() {
-		this.tfQuantidade = tfQuantidade;
+
+	public void atualizar(ActionListener actionListener) {
+		this.Atualizar.addActionListener(actionListener);
 	}
 
-	public void cadastrar(ActionListener actionListener) {
-		this.btnCadastrarP.addActionListener(actionListener);
+	public void voltar(MouseListener actionListener) {
+		this.lbVoltar.addMouseListener(actionListener);
 	}
-
-	public void irParaTabela(MouseListener actionListener) {
-		this.lbIrTabela.addMouseListener(actionListener);
-	}
-
-	public void sair(MouseListener actionListener) {
-		this.lbSair.addMouseListener(actionListener);
+	public void atualizarTabela() {
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		List<Produto> lista = produtoDAO.listarProduto();
+		ProdutoTableModel model = new ProdutoTableModel(lista);
 	}
 
 }

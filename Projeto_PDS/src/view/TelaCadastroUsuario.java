@@ -9,69 +9,112 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class TelaCadastroUsuario extends JPanel {
+public class TelaCadastroUsuario extends TelaComFundo {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField tfNomeC;
+	private JTextField tfEmailC;
+	private JButton btnCadastrar;
+	private JComboBox cbTipoUsuario;
+	private JLabel lbVoltar;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaCadastroUsuario() {
-		setBackground(new Color(242, 249, 255));
-		setForeground(new Color(175, 215, 254));
+		setBackground(new Color(221, 235, 247));
 
-		setMinimumSize(new Dimension(900, 634));
-		setPreferredSize(new Dimension(900, 634));
-		setLayout(new MigLayout("insets 30 15 30 60, fill, gap 10", "[grow][grow 30][grow, center][grow]", "[grow][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow]"));
-		
+		setMinimumSize(new Dimension(975, 634));
+		setPreferredSize(new Dimension(975, 634));
+		setLayout(new MigLayout("insets 30 15 30 60, fill, gap 10", "[grow][grow 30][grow,center][grow]",
+				"[][grow][grow 3][grow 5][grow 3][grow 5][grow 3][grow 5][grow 3][grow]"));
+
+		JLabel label = new JLabel("");
+
+		this.lbVoltar = new JLabel("");
+		this.lbVoltar.setIcon(new ImageIcon(TelaCadastroUsuario.class.getResource("/Imagens/botao-voltar40.png")));
+		add(this.lbVoltar, "cell 0 0");
+
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(TelaCadastroUsuario.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg-150.png")));
-		add(lblNewLabel_3, "cell 2 0,alignx left,aligny bottom");
-		
+		lblNewLabel_3.setIcon(new ImageIcon(
+				TelaCadastroUsuario.class.getResource("/Imagens/carrinho-de-supermercado-Logo-Vector.svg-150.png")));
+		add(lblNewLabel_3, "cell 2 1,alignx left,aligny bottom");
+
 		JLabel lblNewLabel = new JLabel("Tipo de usuário:");
-		lblNewLabel.setForeground(new Color(51, 68, 147));
-		lblNewLabel.setBackground(new Color(255, 255, 255));
+		lblNewLabel.setForeground(new Color(17, 29, 176));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		add(lblNewLabel, "cell 1 2,alignx trailing");
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(new Color(255, 0, 128));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Cliente"}));
-		add(comboBox, "cell 2 2,growx");
-		comboBox.setBackground(Color.red);
-	      
+		add(lblNewLabel, "cell 1 3,alignx trailing");
+
+		cbTipoUsuario = new JComboBox();
+		cbTipoUsuario.setBackground(new Color(255, 255, 255));
+		cbTipoUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbTipoUsuario.setModel(new DefaultComboBoxModel(new String[] { "Administrador", "Cliente" }));
+		add(cbTipoUsuario, "cell 2 3,grow");
+
 		JLabel lblNewLabel_1 = new JLabel("Nome:");
-		lblNewLabel_1.setForeground(new Color(51, 68, 147));
+		lblNewLabel_1.setForeground(new Color(17, 29, 176));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		add(lblNewLabel_1, "cell 1 4,alignx trailing");
-		
-		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(230, 240, 255));
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(textField_1, "cell 2 4,growx");
-		textField_1.setColumns(10);
-		
+		add(lblNewLabel_1, "cell 1 5,alignx trailing");
+
+		this.tfNomeC = new JTextField();
+		this.tfNomeC.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(this.tfNomeC, "cell 2 5,grow");
+		this.tfNomeC.setColumns(10);
+
 		JLabel lblNewLabel_2 = new JLabel("Email");
-		lblNewLabel_2.setForeground(new Color(51, 68, 147));
+		lblNewLabel_2.setForeground(new Color(17, 29, 176));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		add(lblNewLabel_2, "cell 1 6,alignx trailing");
-		
-		textField_2 = new JTextField();
-		textField_2.setBackground(new Color(230, 240, 255));
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		add(textField_2, "cell 2 6,growx");
-		textField_2.setColumns(10);
-		
-		JButton btCadastrar = new JButton("Cadastrar");
-		btCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		add(btCadastrar, "cell 2 8,alignx left,aligny top");
+		add(lblNewLabel_2, "cell 1 7,alignx trailing");
+
+		this.tfEmailC = new JTextField();
+		this.tfEmailC.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		add(this.tfEmailC, "cell 2 7,grow");
+		this.tfEmailC.setColumns(10);
+
+		this.btnCadastrar = new JButton("Cadastrar");
+		this.btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(this.btnCadastrar, "cell 2 9,aligny top");
+	}
+
+	public JComboBox getcbTipoUsuario() {
+		return cbTipoUsuario;
+	}
+
+	public void setcbTipoUsuario(JComboBox cbTipoUsuario) {
+		this.cbTipoUsuario = cbTipoUsuario;
+	}
+
+	public JTextField gettfNomeC() {
+		return tfNomeC;
+	}
+
+	public void settfNomeC(JTextField tfNomeC) {
+		this.tfNomeC = tfNomeC;
+	}
+
+	public JTextField gettfEmailC() {
+		return tfEmailC;
+	}
+
+	public void settfEmailC(JTextField tfEmailC) {
+		this.tfEmailC = tfEmailC;
+	}
+
+	public void cadastrar(ActionListener actionListener) {
+		this.btnCadastrar.addActionListener(actionListener);
+	}
+
+	public void voltar(MouseListener actionListener) {
+		this.lbVoltar.addMouseListener(actionListener);
 	}
 
 }

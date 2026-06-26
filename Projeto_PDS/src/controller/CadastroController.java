@@ -1,61 +1,93 @@
-//package controller;
-//
-//import model.Usuario;
-//import model.UsuarioDAO;
-//import view.TelaCadastroUsuario;
-//
-///**
-// * Classe responsável pela comunicação entre a view (TelaCadastro) e o model (candidatoDAO).
-// */
-//public class CadastroController {
-//	private final TelaCadastroUsuario view;
-//	private final UsuarioDAO model;
-//	private final Navegador navegador;
-//
-//	/**
-//	 * Construtor da classe
-//	 * @param view Referência à tela que controla (TelaCadastro).
-//	 * @param model Referência ao modelo de dados (CandidatoDAO).
-//	 * @param navegador Referência ao elemento que faz a transição de telas.
-//	 */
-//	public CadastroController(TelaCadastroUsuario view, UsuarioDAO model, Navegador navegador) {
-//		this.view = view;
-//		this.model = model;
-//		this.navegador = navegador;
-//
-//		//Define o que será executado quando o botão 'Cadastrar' da TelaCadastro for clicado.
-//		this.view.cadastrar(e -> {
-//			String nome = view.getNome();
-//			String formacao = view.getFormacao();
-//			String area = view.getArea();
-//
-//			if(!nome.equals("") &&
-//					!formacao.equals("") &&
-//					!area.equals("")) {
-//
-//				Candidato c = new Candidato(nome, formacao, area, false);
-//				this.model.adicionar(c);
-//
-//				this.view.limparFormulario();
-//				this.view.exibirMensagem("Sucesso", "Candidato salvo!", 1);
-//			}
-//			else {
-//				this.view.exibirMensagem("Erro", "Preencha todos os campos!", 0);
-//			}
-//		});
-//
-//		//Define o que será executado quando o botão 'Próximo' da TelaCadastro for clicado.
-//		this.view.proximo(e -> {
-//			if(model.listarTodos().size() > 0)
-//				this.navegador.navegarPara("CONTRATACAO");
-//			else
-//				this.view.exibirMensagem("Erro", "Nenhum candidato cadastrado! Cadastre antes de avançar." , 0);
-//		});
-//
-//		//Define o que será executado quando o botão 'Cancelar' da TelaCadastro for clicado.
-//		this.view.cancelar(e -> {
-//			this.navegador.sair();
-//		});
-//	}
-//
-//}
+package controller;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import model.Usuario;
+import model.UsuarioDAO;
+import view.TelaCadastroUsuario;
+import view.TelaLogin;
+
+public class CadastroController {
+
+	private TelaCadastroUsuario cadastro;
+	private UsuarioDAO user;
+	private Navegador navegador;
+
+	public CadastroController(TelaCadastroUsuario cadastro, UsuarioDAO user, Navegador navegador) {
+		super();
+		this.cadastro = cadastro;
+		this.user = user;
+		this.navegador = navegador;
+
+		this.cadastro.cadastrar(e -> {
+			verificarCadastroUsuario();
+		});
+
+		this.cadastro.voltar(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				navegador.navegarPara("LOGIN");
+				limparCamposCadastro();
+			}
+
+		});
+	}
+
+	private void verificarCadastroUsuario() {
+
+		String nome = cadastro.gettfNomeC().getText();
+		String email = cadastro.gettfEmailC().getText();
+
+		if (nome.isEmpty() || email.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Prencha todos os campos", "Informação",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+
+		if (!email.contains("@") || email.substring(0, email.indexOf("@")).contains(" ")) {
+			JOptionPane.showMessageDialog(null, "Por favor, insira um e-mail válido", "Erro",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		try {
+			for (Usuario u : user.listarUsuarios()) {
+				if (u.getEmail().equals(email)) {
+					JOptionPane.showMessageDialog(null, "Este e-mail já está cadastrado no sistema.",
+							"E-mail Duplicado", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+			}
+
+			Usuario novoUsuario = new Usuario();
+			novoUsuario.setNome(nome);
+			novoUsuario.setEmail(email);
+			Object tipo = cadastro.getcbTipoUsuario().getSelectedItem();
+			if (tipo == null) {
+				JOptionPane.showMessageDialog(null, "Selecione um tipo de usuário", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			novoUsuario.settipoUsuario(tipo.toString());
+
+			user.adicionarUsuario(novoUsuario);
+			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+			navegador.navegarPara("LOGIN");
+			limparCamposCadastro();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário no banco de dados. Tente novamente.",
+					"Erro de Conexão", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+
+
+	public void limparCamposCadastro() {
+		cadastro.gettfEmailC().setText("");
+		cadastro.gettfNomeC().setText("");
+	}
+}

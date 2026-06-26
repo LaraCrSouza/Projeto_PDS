@@ -14,7 +14,6 @@ public class Janela extends JFrame {
 	private JPanel contentPane;
 	private CardLayout cardLayout;
 
-
 	/**
 	 * Construtor da classe.
 	 */
@@ -25,27 +24,38 @@ public class Janela extends JFrame {
 		this.cardLayout = new CardLayout();
 
 		this.contentPane = new JPanel(this.cardLayout);
-		this.contentPane.setPreferredSize(new Dimension(600, 675)); 
+		this.contentPane.setPreferredSize(new Dimension(1020, 640));
+		setMinimumSize(new Dimension(1020, 640));
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
 	}
 
-	/**
-	 * Método responsável por adicionar os painéis que representam
-	 * cada tela da aplicação ao painel principal.
-	 * @param nome Nome do painel.
-	 * @param tela Painel que será adicionado.
-	 */
 	public void adicionarTela(String nome, JPanel tela) {
 		this.contentPane.add(tela, nome);
 	}
 
-	/**
-	 * Método responsável por mostrar uma tela (painel) específica.
-	 * @param nome Nome do painel.
-	 */
 	public void mostrarTela(String nome) {
-		this.cardLayout.show(this.contentPane, nome);
-		this.pack();
+
+	    if (nome.equals("LOGIN")) {
+	        setTitle("Login");
+	    }
+	    else if (nome.equals("CADASTRO USUARIO")) {
+	        setTitle("Cadastro");
+	    }
+	    else if (nome.equals("CADASTRO PRODUTO")) {
+	        setTitle("Cadastro de Produto");
+	    }
+	    else if (nome.equals("COMPRAS")) {
+	        setTitle("Compras");
+	    }
+	    else if (nome.equals("CARRINHO")) {
+	        setTitle("Carrinho");
+	    }
+	    else if (nome.equals("FINALIZAR COMPRA")) {
+	        setTitle("Finalizar Compra");
+	    }
+
+	    this.cardLayout.show(this.contentPane, nome);
+	    this.pack();
 	}
 }

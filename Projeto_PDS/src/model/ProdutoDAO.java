@@ -1,3 +1,4 @@
+
 package model;
 
 import java.sql.Connection;
@@ -7,122 +8,154 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sql.BancoDeDados;
-
 public class ProdutoDAO {
 
-    // CREATE - Adicionar um novo usuário
-    public void adicionarProduto(Produto produto) {
-        String sql = "INSERT INTO produtos (codigo, nome, URL, Marca, Categorias, PesoBruto, altura, largura, comprimento, preco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//        
-        Connection conexao = null;
-        PreparedStatement pstm = null;
+	public void adicionarProduto(Produto produto) throws SQLException {
+		String sql = "INSERT INTO produto (codigo, nome, URL, marca, categorias, PesoBruto, altura, largura, comprimento, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, produto.getNome());
-            pstm.setInt(2, produto.getCodigo());
-            pstm.setString(3, produto.getURL());
-            pstm.setString(4, produto.getMarca());
-            pstm.setString(5, produto.getCategorias());
-            pstm.setFloat(6, produto.getPesoBruto());
-            pstm.setFloat(7, produto.getAltura());
-            pstm.setFloat(8, produto.getLargura());
-            pstm.setFloat(9, produto.getComprimento());
-            pstm.setDouble(10, produto.getPreco());
-            
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	BancoDeDados.desconectar(conexao);
-            if (pstm != null) {
-                try {
-                    pstm.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+		Connection conexao = null;
+		PreparedStatement pstm = null;
 
-    // READ - Listar todos os usuários
-    public List<Produto> listarProdutos() {
-        String sql = "SELECT * FROM produtos";
-        List<Produto> produtos = new ArrayList<>();
-        Connection conexao = null;
-        PreparedStatement pstm = null;
-        ResultSet rset = null; // Objeto que guarda o resultado da consulta
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, produto.getCodigo());
+			pstm.setString(2, produto.getNome());
+			pstm.setString(3, produto.getURL());
+			pstm.setString(4, produto.getMarca());
+			pstm.setString(5, produto.getCategorias());
+			pstm.setFloat(6, produto.getPesoBruto());
+			pstm.setFloat(7, produto.getAltura());
+			pstm.setFloat(8, produto.getLargura());
+			pstm.setFloat(9, produto.getComprimento());
+			pstm.setDouble(10, produto.getPreco());
+			pstm.setInt(11, produto.getQuantidade());
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            rset = pstm.executeQuery();
+			pstm.executeUpdate();
 
-            while (rset.next()) {
-                Produto produto = new Produto();
-                produto.setURL(rset.getString("URL"));
-                produto.setNome(rset.getString("nome"));
-                produto.setMarca(rset.getString("Marca"));
-                produto.setCategorias(rset.getString("Categorias"));
-                produto.setPesoBruto(rset.getFloat("PesoBruto"));
-                produto.setAltura(rset.getFloat("Altura"));
-                produto.setComprimento(rset.getFloat("comprimento"));
-                produto.setPreco(rset.getDouble("preco"));
-                produtos.add(produto);
-//                codigo, String nome, String URL, String Marca, String Categorias, int PesoBruto, int altura, int largura, int comprimento, double preco
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	BancoDeDados.desconectar(conexao);
-            // Fechar recursos
-        }
-        return produtos;
-    }
+		} finally {
+			BancoDeDados.desconectar(conexao);
+			if (pstm != null) {
+				try {
+					pstm.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-    // UPDATE - Atualizar um usuário existente
-    public void atualizarProduto(Produto produto) {
-        String sql = "UPDATE usuarios SET nome = ?, URL= ?, Marca = ?, Categorias = ?, PesoBruto = ?, Altura = ?, comprimento = ?, preco = ?, WHERE codigo = ?";
-        Connection conexao = null;
-        PreparedStatement pstm = null;
+	public List<Produto> listarProduto() {
+		String sql = "SELECT * FROM produto";
+		List<Produto> listaProduto = new ArrayList<>();
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            pstm.setString(1, produto.getNome());
-            pstm.setString(2, produto.getURL());
-            pstm.setString(3, produto.getMarca());
-            pstm.setString(3, produto.getCategorias());
-            pstm.setFloat(3, produto.getPesoBruto());
-            pstm.setFloat(3, produto.getAltura());
-            pstm.setFloat(3, produto.getComprimento());
-            pstm.setDouble(3, produto.getPreco());
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	BancoDeDados.desconectar(conexao);
-        }
-    }
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			rset = pstm.executeQuery();
 
-    // DELETE - Excluir um usuário pelo ID
-    public void excluirProduto(int codigo) {
-        String sql = "DELETE FROM usuarios WHERE id = ?";
-        Connection conexao = null;
-        PreparedStatement pstm = null;
+			while (rset.next()) {
+				Produto produto = new Produto();
+				produto.setURL(rset.getString("URL"));
+				produto.setNome(rset.getString("nome"));
+				produto.setMarca(rset.getString("marca"));
+				produto.setCategorias(rset.getString("categorias"));
+				produto.setPesoBruto(rset.getFloat("PesoBruto"));
+				produto.setAltura(rset.getFloat("altura"));
+				produto.setComprimento(rset.getFloat("comprimento"));
+				produto.setPreco(rset.getDouble("preco"));
+				produto.setQuantidade(rset.getInt("quantidade"));
+				produto.setCodigo(rset.getString("codigo"));
+				produto.setLargura(rset.getFloat("largura"));
+				listaProduto.add(produto);
 
-        try {
-            conexao = BancoDeDados.conectar();
-            pstm = conexao.prepareStatement(sql);
-            pstm.setInt(1, codigo);
-            pstm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	BancoDeDados.desconectar(conexao);
-        }
-    }
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+
+		}
+		return listaProduto;
+	}
+
+	public void atualizarProduto(Produto produto, String codigoOriginal) {
+		String sql = "UPDATE produto SET nome = ?, URL= ?, marca = ?, categorias = ?, PesoBruto = ?, altura = ?, comprimento = ?, largura = ?, preco = ?, quantidade =?, codigo = ? WHERE codigo = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, produto.getNome());
+			pstm.setString(2, produto.getURL());
+			pstm.setString(3, produto.getMarca());
+			pstm.setString(4, produto.getCategorias());
+			pstm.setFloat(5, produto.getPesoBruto());
+			pstm.setFloat(6, produto.getAltura());
+			pstm.setFloat(7, produto.getComprimento());
+			pstm.setFloat(8, produto.getLargura());
+			pstm.setDouble(9, produto.getPreco());
+			pstm.setDouble(10, produto.getQuantidade());
+			pstm.setString(11, produto.getCodigo());
+			pstm.setString(12, codigoOriginal);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
+	}
+
+	public void excluirProduto(String codigo) {
+		String sql = "DELETE FROM produto WHERE codigo = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, codigo);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
+	}
+
+	public Produto buscarPorCodigo(String codigo) {
+		String sql = "SELECT * FROM produto WHERE codigo = ?";
+		Connection conexao = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Produto produto = null;
+		try {
+			conexao = BancoDeDados.conectar();
+			pstm = conexao.prepareStatement(sql);
+			pstm.setString(1, codigo);
+			rset = pstm.executeQuery();
+			if (rset.next()) {
+				produto = new Produto();
+				produto.setCodigo(rset.getString("codigo"));
+				produto.setNome(rset.getString("nome"));
+				produto.setURL(rset.getString("URL"));
+				produto.setMarca(rset.getString("marca"));
+				produto.setCategorias(rset.getString("categorias"));
+				produto.setPesoBruto(rset.getFloat("PesoBruto"));
+				produto.setAltura(rset.getFloat("altura"));
+				produto.setLargura(rset.getFloat("largura"));
+				produto.setComprimento(rset.getFloat("comprimento"));
+				produto.setPreco(rset.getDouble("preco"));
+				produto.setQuantidade(rset.getInt("quantidade"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			BancoDeDados.desconectar(conexao);
+		}
+		return produto;
+	}
 }
-
